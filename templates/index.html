@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<head>
+	<meta charset="utf-8">
+
+	<title>1kwm2</title>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+	<script src="{{ url_for('static', filename='assets/dist/js/chartjs-plugin-dragdata.min.js') }}"></script>
+
+	<style>
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+		}
+		canvas {
+			background-image:  url({{ url_for('static', filename='images/sombras1.png') }});
+			background-size: 100% 100%; 
+			margin: fixed;
+			/* position: absolute; */
+			top: 0;
+			right: 0; 
+			bottom: 0; 
+			left: 0; 
+		}
+	</style>
+	<!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+	<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-2.0.0.min.js"></script>
+	<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.0.min.js"></script>
+	<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-tables-2.0.0.min.js"></script>
+	<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-gl-2.0.0.min.js"></script>
+	<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-2.0.0.min.js"></script>
+
+</head>
+
+
+
+<body class="d-flex flex-column h-100">
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+			<a href="https://1kwm2.com/" class="navbar-brand d-flex align-items-center">
+				<!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> -->
+				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-brightness-high-fill" fill="currentColor"
+					xmlns="http://www.w3.org/2000/svg">
+					<path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" />
+					<path fill-rule="evenodd"
+						d="M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+				</svg>
+				<!-- <strong>1 kW/m<sup>2</sup></strong> -->
+			</a>
+			<a id=informe class="nav-link" href="{{ url_for('infor')}}">
+				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-text-fill" fill="currentColor"
+					xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd"
+						d="M12 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zM5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z" />
+				</svg>
+				Informe</a>
+			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-question-square-fill" fill="currentColor"
+					xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd"
+						d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm4.57 6.033H5.25C5.22 4.147 6.68 3.5 8.006 3.5c1.397 0 2.673.73 2.673 2.24 0 1.08-.635 1.594-1.244 2.057-.737.559-1.01.768-1.01 1.486v.355H7.117l-.007-.463c-.038-.927.495-1.498 1.168-1.987.59-.444.965-.736.965-1.371 0-.825-.628-1.168-1.314-1.168-.901 0-1.358.603-1.358 1.384zm1.251 6.443c-.584 0-1.009-.394-1.009-.927 0-.552.425-.94 1.01-.94.609 0 1.028.388 1.028.94 0 .533-.42.927-1.029.927z" />
+				</svg>
+				Ayuda</a>
+			<div class="collapse navbar-collapse" id="navbarsExample03">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+					</li>
+					<li class="nav-item">
+					</li>
+					<li class="nav-item">
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+
+	<main role="main" class="flex-shrink-0">
+		<br>
+		<div class="container">
+			<section class="jumbotron text-center">
+				<div class="container">
+					<h1>PÉRDIDAS POR SOMBRAS</h1>
+					<p class="lead text-muted">
+						variables</p>
+					<p>
+						<!-- <a href="#" class="btn btn-primary my-2">Main call to action</a>
+						<a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
+					</p>
+				</div>
+			</section>
+			<section class="jumbotron">
+				<canvas id="canvas" width="500" height="400" ></canvas>
+				<div class="btn-group">
+					<button type="button" class="btn btn-sm btn-outline-secondary"
+						onclick="location.href='{{ url_for('infor') }}';">Informe</button>
+				</div>
+				<span id="punto">pppp</span>
+			</section>
+
+			<div class="album py-5 bg-light">
+				<div class="container">
+					<div class="row">
+
+						<div class="col-md-4">
+							<div id=sc class="card mb-4 shadow-sm">
+								<!-- <div id="gincl"></div> -->
+								<img src="{{ url_for('static', filename='images/beta.png') }}"
+									class="bd-placeholder-img card-img-top" width="100%" height="225"
+									xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+									focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+								<title>Placeholder</title>
+								<rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+									dy=".3em"></text>
+								</svg>
+								<div class="card-body">
+									<div class="d-flex justify-content-between align-items-center">
+										<div class="btn-group">
+											<button type="button" class="btn btn-sm btn-outline-secondary"
+												onclick="location.href='{{ url_for('infor')}}';">Informe</button>
+										</div>
+									</div>
+									<small class="text-muted">Perdidas P=<span id="P"></span> %</small>
+									<p class="card-text">
+										<a>Inclinacion &beta;=
+											<span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"
+												id="inclinacion_value">
+											</span>
+											<a>
+									</p>
+									<input type="range" class="custom-range" min="0" max="90" value="30" step="1"
+										id="inclinacion_range">
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="col-md-4">
+							<div id=sc class="card mb-4 shadow-sm">
+								<img src="{{ url_for('static', filename='images/alfa.png') }}"
+									class="bd-placeholder-img card-img-top" width="100%" height="225"
+									xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+									focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+								<title>Placeholder</title>
+								<rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+									dy=".3em"></text>
+								</svg>
+								<div class="card-body">
+									<div class="d-flex justify-content-between align-items-center">
+										<div class="btn-group">
+											<button type="button" class="btn btn-sm btn-outline-secondary"
+												onclick="location.href='{{ url_for('infor')}}';">Informe</button>
+										</div>
+									</div>
+									<small class="text-muted">Perdidas P=<span id="P1"></span> %</small>
+									<p class="card-text">
+										<a>Orientacion &alpha;=<span
+												class="font-weight-bold text-primary ml-2 mt-1 valueSpan"
+												id="orientacion_value"></span></a>
+									</p>
+									<input type="range" class="custom-range" min="-180" max="180" value="0" step="1"
+										id="orientacion_range">
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="col-md-4">
+							<div id=dmp class="card mb-4 shadow-sm">
+								<img src="{{ url_for('static', filename='images/phi.png') }}"
+									class="bd-placeholder-img card-img-top" width="100%" height="225"
+									xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+									focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+								<title>Placeholder</title>
+								<rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+									dy=".3em"></text>
+								</svg>
+								<div class="card-body">
+									<div class="d-flex justify-content-between align-items-center">
+										<div class="btn-group">
+											<button type="button" class="btn btn-sm btn-outline-secondary"
+												onclick="location.href='{{ url_for('infor')}}';">Informe</button>
+										</div>
+									</div>
+									<small class="text-muted">Perdidas P=<span id="P2"></span> %</small>
+									<p class="card-text">
+										<a>Latitud &Phi;=<span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"
+												id="latitud_value"></span></a>
+									</p>
+									<input type="range" class="custom-range" min="35" max="45" value="40" step="1"
+										id="latitud_range">
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<main role="main" class="container">
+		<div>
+			<br><br>
+			<h1> </h1>
+			<p class="lead"></p>
+			<!-- <a href=# id=calculate>calcula en el servidor</a> -->
+			<div>
+			</div>
+		</div>
+	</main>
+
+	<footer class="container">
+		<p>&copy; 1kwm2 2020</p>
+	</footer>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- JS, Popper.js, and jQuery -->
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+	<script type=text/javascript>
+			$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+	  </script>
+	<script src="{{ url_for('static', filename='assets/dist/js/pk.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a href="https://1kwm2.com/" class="navbar-brand d-flex align-items-center">
+      <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> -->
+      <strong>1kw/m<sup>2</sup></strong>
+    </a>
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+
+    <!-- <div class="collapse navbar-collapse" id="navbarsExampleDefault"> -->
+      <ul class="navbar-nav mr-auto">
+        <!-- <li class="nav-item active">
+          <a class="nav-link" href="#">volver <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Ajustar Variables</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item"><input type="range" class="slider" min="35" max="45" value="40" step="1"
+                id="latitud_range">&Phi;=<span id="latitud_value"></span></a>
+            <a class="dropdown-item"><input type="range" class="slider" min="0" max="90" value="35" step="1"
+                id="inclinacion_range">&beta;=<span id="inclinacion_value"></span></a>
+            <a class="dropdown-item"><input type="range" class="slider" min="-180" max="180" value="0" step="1"
+                id="orientacion_range">&alpha;=<span id="orientacion_value"></span></a>
+            <!-- <a class="dropdown-item" href="#">________________________________________________</a> -->
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
+        <button class="btn btn-secondary my-2 my-sm-0" onclick="window.print();return false;">Imprimir</button>
+      </form>
+    <!-- </div> -->
+  </nav>
