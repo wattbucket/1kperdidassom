@@ -1,42 +1,129 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a href="https://1kwm2.com/" class="navbar-brand d-flex align-items-center">
-      <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> -->
-      <strong>1kw/m<sup>2</sup></strong>
-    </a>
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
+<!DOCTYPE html>
+<html ng-app="app" lang="en" xmlns:fb="http://ogp.me/ns/fb#">
 
-    <!-- <div class="collapse navbar-collapse" id="navbarsExampleDefault"> -->
-      <ul class="navbar-nav mr-auto">
-        <!-- <li class="nav-item active">
-          <a class="nav-link" href="#">volver <span
-              class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"  href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li> -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">Ajustar Variables</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item"><input type="range" class="slider" min="35" max="45" value="40" step="1"
-                id="latitud_range">&Phi;=<span id="latitud_value"></span></a>
-            <a class="dropdown-item"><input type="range" class="slider" min="0" max="90" value="35" step="1"
-                id="inclinacion_range">&beta;=<span id="inclinacion_value"></span></a>
-            <a class="dropdown-item"><input type="range" class="slider" min="-180" max="180" value="0" step="1"
-                id="orientacion_range">&alpha;=<span id="orientacion_value"></span></a>
-            <!-- <a class="dropdown-item" href="#">________________________________________________</a> -->
-          </div>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
-        <button class="btn btn-secondary my-2 my-sm-0" onclick="window.print();return false;">Imprimir</button>
-      </form>
-    <!-- </div> -->
-  </nav>
+<head>
+  <title>PV*SOL online - a free tool for solar power (PV) systems.</title>
+  <meta name="description"
+    content="PV*SOL online is a free tool for the calculation of PV systems. Made by Valentin Software, the developers of the full featured market leading PV simulation software PV*SOL, this online tool lets you input basic data like location, load profiles, solar power (photovoltaic, PV) module data, Inverter manufacturer. We then search for the optimal connection of your PV modules and the inverter that suits best. After the simulation of the system, the results are presented: Annual PV energy, Performance ratio, Own power consumption, Solar fraction, and many more ...">
+  <meta name="keywords"
+    content="software, online tool, online, PV, solar energy, photovoltaic application, solar calculator, planning software, application, renewable energies, sustainable energy, climate change, feed-in tariff, energy balance, photovoltaic system, photovoltaics, solar power, PV module, solar module, solar panel, solar cells, PV array, free standing, rack mounted arrays, inverter configuration, grid-connected system, stand-alone PV systems, electricity consumption, yield calculation, storage, MPP tracking, Shading analysis">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-messages.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.9.0/angular-translate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+  <script src="app/min/app.803ef91e.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="content/css/pv.min.dae1ecb3.css">
+  <link href="content/css/ball-newton-cradle.min.css" rel="stylesheet">
+  <script src="libs/leaflet/leaflet.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer="defer"></script>
+  <script>!function (e, a, t, n, g, c, o) { e.GoogleAnalyticsObject = g, e.ga = e.ga || function () { (e.ga.q = e.ga.q || []).push(arguments) }, e.ga.l = 1 * new Date, c = a.createElement(t), o = a.getElementsByTagName(t)[0], c.async = 1, c.src = "https://www.google-analytics.com/analytics.js", o.parentNode.insertBefore(c, o) }(window, document, "script", 0, "ga"), ga("create", "UA-88902925-1", "auto"), ga("set", "anonymizeIp", !0), ga("send", "pageview")</script>
+  <script src="app/tracking.js"></script>
+  <meta property="og:image" content="https://pvsol-online.valentin-software.com/content/img/slider-pvsolonline-en.jpg">
+  <meta property="og:url" content="https://pvsol-online.valentin-software.com/">
+</head>
+
+<body ng-controller="MainController as vm"><img
+    src="https://pvsol-online.valentin-software.com/content/img/slider-pvsolonline-en.jpg"
+    style="position: absolute; top: -500px;">
+  <div class="jumbotron">
+    <div class="container">
+      <div ng-include src="'Partials/Header.html'"></div>
+      <div ng-view>
+        <h1>PV*SOL online is a free tool for the calculation of PV systems</h1>
+        <p>PV*SOL online is a free tool for the calculation of PV systems. Made by the developers of the full featured
+          market leading PV simulation software PV*SOL, this online tool lets you input basic data like Location of your
+          system, Load profile and annual energy consumption, PV module data (manufacturer, model, orientation, quantity
+          etc.), Inverter manufacturer. Our automatic configuration manager will then search for the optimal connection
+          of your PV modules and the inverter that suits best. After the simulation of the system, the results are
+          presented: Annual PV energy, Performance ratio, Own power consumption, Solar fraction, and many more ...</p>
+        <h2>Location</h2>
+        <p>Here you can enter your country and city, easy by clicking on a map - worldwide. You will see the latitude
+          and longitude of your location</p>
+        <p>The Annual global irradiation and Average temperature is displayed as well.</p>
+        <h2>Consumption</h2>
+        <h3>Load profile</h3>
+        <p>You can choose between 1-person or 2-person household with 2 children. 2-person household with 1 child,
+          2-person household. BDEW load profile business, Household - load profile with high night proportion</p>
+        <p>load profile with low summer proportion and low percentage of morning hours. Heat pump and Profile with
+          constant load.</p>
+        <h3>Annual consumption</h3>
+        <p>the Annual consumption can be entered in kWh, Kilo-Watthours, energy per year</p>
+        <h2>PV modules</h2>
+        <p>You can choose modules from our extensive database, comprising solar panels by Manufacturers like:</p>
+        <ul>
+          <li>Trina</li>
+          <li>Jinko Solar</li>
+          <li>SolarWorld</li>
+          <li>Canadian Solar</li>
+          <li>LG</li>
+          <li>AEG industrial solar</li>
+          <li>aleo solar</li>
+          <li>JA solar</li>
+          <li>Hanwha Q-cells</li>
+          <li>First Solar</li>
+          <li>Yingli</li>
+          <li>SunPower</li>
+        </ul>
+        <p>Model</p>
+        <p>monocrystalline, polycrystalline. CIS, HIT, CdTe, mono. poly, silicon, n-type</p>
+        <h3>No of Modules</h3>
+        <h3>Total PV power</h3>
+        <h3>Inclination</h3>
+        <h3>Orientation</h3>
+        <h3>Installation type</h3>
+        <p>Roof parallel, roof integrated - rear ventilation, mounted - roof, mounted - open area</p>
+        <h3>Albedo</h3>
+        <h3>Shadowing</h3>
+        <h3>Soiling</h3>
+        <h2>Inverter</h2>
+        <p>You can choose modules from our extensive database, comprising AC/DC inverter by manufacturers like:</p>
+        <ul>
+          <li>SMA</li>
+          <li>Kaco</li>
+          <li>Fronius</li>
+          <li>GE</li>
+          <li>Ingeteam</li>
+          <li>SunGrow</li>
+          <li>ABB</li>
+          <li>Chint</li>
+          <li>SolarEdge</li>
+          <li>Advanced Energy</li>
+          <li>Enphase Energy</li>
+          <li>Solectria Renewables</li>
+          <li>Huawei</li>
+          <li>TMEIC</li>
+        </ul>
+        <p>Get best configuration, in terms of sizing factor, MPP and inverter. Number of PV modules per string,
+          parallel strings in connection, PV field.</p>
+        <p>MPP, maximum power point and Dimensioning factor</p>
+        <h2>Simulate PV system</h2>
+        <h2>Results</h2>
+        <p>After the simulation of the system, the results are presented:</p>
+        <ul>
+          <li>Annual PV energy</li>
+          <li>Performance ratio</li>
+          <li>Own power consumption</li>
+          <li>Solar fraction</li>
+          <li>Monthly charts</li>
+          <li>Pie charts</li>
+        </ul>
+        <p>Simulating avoided CO2 emissions, specific annual yield. Energy in kWh, Own power consumption. grid feed-in,
+          PV energy and getting the best configuration</p>
+      </div>
+    </div>
+  </div>
+  <div ng-include src="'Partials/Footer.html'"></div>
+</body>
+
+</html>
