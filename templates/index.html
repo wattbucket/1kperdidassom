@@ -33,12 +33,6 @@
 	<!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
-	<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-2.0.0.min.js"></script>
-	<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.0.min.js"></script>
-	<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-tables-2.0.0.min.js"></script>
-	<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-gl-2.0.0.min.js"></script>
-	<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-2.0.0.min.js"></script>
-
 </head>
 
 
@@ -98,8 +92,8 @@
 					</p>
 				</div>
 			</section>
-			<section class="jumbotron">
-				<canvas id="canvas" width="500" height="400" ></canvas>
+			<section>
+				<canvas id="canvas" width="800" height="400" ></canvas>
 				<div class="btn-group">
 					<button type="button" class="btn btn-sm btn-outline-secondary"
 						onclick="location.href='{{ url_for('infor') }}';">Informe</button>

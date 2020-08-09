@@ -12,67 +12,71 @@ var scatterChart = new Chart(ctx, {
     data: {
         datasets: [
             {
-                label: 'Obstaculo_1',
+                label: 'Obst_E',
                 pointRadius: 10,
                 showLine: true,
-
                 data: [
                     {
-                        x: -5,
-                        y: 25
-
+                        x: -4*10,
+                        y: 10
                     },
                     {
-                        x: 5,
-                        y: 25
+                        x: -3*10,
+                        y: 10
                     },
                     {
-                        x: 17,
-                        y: 20
+                        x: -2*10,
+                        y: 10
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
-                cubicInterpolationMode: 'linear'
+                cubicInterpolationMode: 'linear',
+                backgroundColor: "rgba(0,255,  0, 0.2)"
+
             },
             {
-                label: 'Obstaculo_2',
-                pointRadius: 10,
-                showLine: true,
-                data: [
-                    {
-                        x: -50,
-                        y: 15
-                    },
-                    {
-                        x: -32,
-                        y: 20
-                    },
-                    {
-                        x: -17,
-                        y: 20
-                    }
-                ],
-                // data=[{xx,yy}],
-                lineTension: 0,
-                cubicInterpolationMode: 'linear'
-            },
-            {
-                label: 'Obstaculo_3',
+                label: 'Obst_S',
                 pointRadius: 10,
                 showLine: true,
 
                 data: [
                     {
-                        x: 18,
-                        y: 20
+                        x: -1*10,
+                        y: 10
+
                     },
                     {
-                        x: 58,
-                        y: 20
+                        x: -0*10,
+                        y: 10
                     },
                     {
-                        x: 100,
+                        x: 1*10,
+                        y: 10
+                    }
+                ],
+                // data=[{xx,yy}],
+                lineTension: 0,
+                cubicInterpolationMode: 'linear',
+                backgroundColor: "rgba(255, 0, 0, 0.2)"
+            },
+
+            {
+                label: 'Obst_O',
+                pointRadius: 10,
+                showLine: true,
+
+                data: [
+                    {
+                        x: 2*10,
+                        y: 10
+                    },
+                    {
+                        x: 3*10,
+                        y: 10
+                    },
+                    {
+                        x: 4*10,
                         y: 10
                     }
                 ],
@@ -112,14 +116,15 @@ var scatterChart = new Chart(ctx, {
             ]
         },
         onDragStart: function (e, element) {
-            console.log(element)
-            console.log('movido un punto')
+            // console.log(element)
+            // console.log('movido un punto')
         },
         onDrag: function (e, datasetIndex, index, value) {
             // change cursor style to grabbing during drag action
             e.target.style.cursor = 'grabbing'
             // where e = event
         },
+
         onDragEnd: function (e, datasetIndex, index, value) {
             // restore default cursor style upon drag release
             e.target.style.cursor = 'default'
@@ -127,7 +132,8 @@ var scatterChart = new Chart(ctx, {
             // where e = event
 
 
-            output4.innerHTML = this.value;
+            output4.innerHTML = [datasetIndex, datasetIndex ,value.x, value.y];
+            // output4.innerHTML = value;
             fetchdata()
 
         }
@@ -174,6 +180,7 @@ function fetchdata() {
         'latitud': document.getElementById("latitud_value").innerHTML,
         'inclinacion': document.getElementById("inclinacion_value").innerHTML,
         'orientacion': document.getElementById("orientacion_value").innerHTML,
+        'punto': document.getElementById("punto").innerHTML,
     }, function (data) {
         $("#P").text(data.P);
         $("#P1").text(data.P);

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request, session
+from flask import Flask, jsonify, render_template, request, session, json
 import pandas as pd # data wrangling
 
 from bokeh.plotting import figure
@@ -44,6 +44,8 @@ def formulario():
     beta = request.args.get('inclinacion', 0, type=int)
     alpha = request.args.get('orientacion', 0, type=int)
     phi = request.args.get('latitud', 0, type=int)
+    punto = request.args.get('punto', 0, type=str)
+    print(punto)
     # calculos
     if beta > 15:
         # P=   100*(1.2*10**(-4)*(beta-phi+10)**2+3.5*10**(-5)*alpha**2),2)
