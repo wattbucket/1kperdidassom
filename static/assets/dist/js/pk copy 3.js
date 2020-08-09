@@ -32,7 +32,7 @@ var scatterChart = new Chart(ctx, {
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0,0,  0, 0.1)"
+                backgroundColor: "rgba(0,255,  0, 0.2)"
 
             },
             {
@@ -58,7 +58,7 @@ var scatterChart = new Chart(ctx, {
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0, 0, 0, 0.3)"
+                backgroundColor: "rgba(255, 0, 0, 0.2)"
             },
 
             {
@@ -82,9 +82,7 @@ var scatterChart = new Chart(ctx, {
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
-                cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0, 0, 0, 0.5)"
-
+                cubicInterpolationMode: 'linear'
             }
 
 
@@ -152,13 +150,13 @@ ctx.globalAlpha = 0.99
 
 // $SCRIPT_ROOT = {{ request.script_root | tojson | safe }};
 
-// var slider1 = document.getElementById("latitud_range");
-// var output1 = document.getElementById("latitud_value");
-// output1.innerHTML = slider1.value;
-// slider1.oninput = function () {
-//     output1.innerHTML = this.value;
-//     fetchdata()
-// }
+var slider1 = document.getElementById("latitud_range");
+var output1 = document.getElementById("latitud_value");
+output1.innerHTML = slider1.value;
+slider1.oninput = function () {
+    output1.innerHTML = this.value;
+    fetchdata()
+}
 
 var slider2 = document.getElementById("inclinacion_range");
 var output2 = document.getElementById("inclinacion_value");
@@ -177,44 +175,6 @@ slider3.oninput = function () {
 }
 
 
-function initialize() {
-    // Initialize the map
-    var map = L.map('map').setView([40, -4], 5);
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-        maxZoom: 18
-    }).addTo(map);
-
-
-    // Event Handlers
-    var output_lat = document.getElementById("latitud_value");
-    var output_lon = document.getElementById("longitud_value");
-    var theMarker = {};
-    map.on('click', function (e) {
-        lat = e.latlng.lat;
-        lon = e.latlng.lng;
-
-        console.log("has clicao LAT: " + lat + " y LONG: " + lon);
-        //Clear existing marker, 
-
-        if (theMarker != undefined) {
-            map.removeLayer(theMarker);
-        };
-
-        //Add a marker to show where you clicked.
-        theMarker = L.marker([lat, lon]).addTo(map);
-        var llat = lat.toFixed(3);
-        var llon = lon.toFixed(3);
-        output_lat.innerHTML = llat;
-        output_lon.innerHTML = llon;
-        fetchdata()
-    });
-}
-
-
-
-
-
 function fetchdata() {
     $.getJSON($SCRIPT_ROOT + '/formulario', {
         'latitud': document.getElementById("latitud_value").innerHTML,
@@ -231,12 +191,7 @@ function fetchdata() {
 }
 
 
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () { fetchdata();initialize() }, false);
+document.addEventListener("DOMContentLoaded", function () { fetchdata() }, false);
 //   document.addEventListener("mouseup", function () { fetchdata() }, false);
 //   document.addEventListener("touchmove", function () { fetchdata() }, false);
 // console.log(datasets)

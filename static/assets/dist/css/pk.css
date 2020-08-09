@@ -1,9 +1,21 @@
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 canvas {
-    background-image: url({{ url_for('static', filename='images/sombras1.png') }});
-    background-size: 100% 100%;
-    /* margin: auto; */
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    background-image: url({{ url_for('static', filename='images/sombras1.png')}})
+}
+
+
+background-size: 100% 100%;
+margin: fixed;
+/* position: absolute; */
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
 }

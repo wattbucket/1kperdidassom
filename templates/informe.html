@@ -48,21 +48,25 @@
 				</svg>
 				imprimir
 			</a>
-			<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03"
-				aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button> -->
 
-
-			<!-- </div> -->
 		</nav>
 	</header>
+	<section class="jumbotron text-center">
+		<div class="container">
+			<h1>Distancia mínima entre filas de módulos</h1>
+			<p class="lead text-muted">
+				Informe</p>
+			<p>
+				<!-- <a href="#" class="btn btn-primary my-2">Main call to action</a>
+				<a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
+			</p>
+		</div>
+	</section>
 
 	<div id="impreso">
-		<!-- <span id="informe">informe</span> -->
-
-		<br><br><br>
-		en mantenimiento
+		<span id="informe">
+			<img src="{{ url_for('static', filename='images/Loading_icon.gif') }}">
+		</span>
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -79,11 +83,10 @@
 }
 </script>
 
+
 	<script>
 		// alert('informe')
-
 		$.getJSON($SCRIPT_ROOT + '/informe', {
-
 		}, function (data) {
 			$("#informe").html(data.informe);
 		});

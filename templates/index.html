@@ -12,51 +12,63 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
 	<script src="{{ url_for('static', filename='assets/dist/js/chartjs-plugin-dragdata.min.js') }}"></script>
 
-	<style>
-		html,
-		body {
-			margin: 0;
-			padding: 0;
-			height: 100%;
-		}
-		canvas {
-			background-image:  url({{ url_for('static', filename='images/sombras1.png') }});
-			background-size: 100% 100%; 
-			margin: fixed;
-			/* position: absolute; */
-			top: 0;
-			right: 0; 
-			bottom: 0; 
-			left: 0; 
-		}
-	</style>
+
 	<!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
+	<!-- para leaflet ================================================================== -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+		integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+		crossorigin="" />
+
+
+	<!-- java script -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Make sure you put this AFTER Leaflet's CSS -->
+	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+		integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+		crossorigin=""></script>
+	<!-- para leaflet ================================================================== -->
+
+
+
 </head>
 
-
-
 <body class="d-flex flex-column h-100">
+
 	<header>
 		<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
 			<a href="https://1kwm2.com/" class="navbar-brand d-flex align-items-center">
-				<!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> -->
+				<!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/> -->
 				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-brightness-high-fill" fill="currentColor"
 					xmlns="http://www.w3.org/2000/svg">
 					<path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" />
 					<path fill-rule="evenodd"
 						d="M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
 				</svg>
+
 				<!-- <strong>1 kW/m<sup>2</sup></strong> -->
 			</a>
-			<a id=informe class="nav-link" href="{{ url_for('infor')}}">
+
+			<a id=informe class="nav-link" onclick="location.href='{{ url_for('infor') }}';" href="{{ url_for('infor')}}">
 				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-text-fill" fill="currentColor"
 					xmlns="http://www.w3.org/2000/svg">
 					<path fill-rule="evenodd"
 						d="M12 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zM5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z" />
 				</svg>
-				Informe</a>
+				Informe
+			</a>
+
 			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
 				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-question-square-fill" fill="currentColor"
 					xmlns="http://www.w3.org/2000/svg">
@@ -64,13 +76,18 @@
 						d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm4.57 6.033H5.25C5.22 4.147 6.68 3.5 8.006 3.5c1.397 0 2.673.73 2.673 2.24 0 1.08-.635 1.594-1.244 2.057-.737.559-1.01.768-1.01 1.486v.355H7.117l-.007-.463c-.038-.927.495-1.498 1.168-1.987.59-.444.965-.736.965-1.371 0-.825-.628-1.168-1.314-1.168-.901 0-1.358.603-1.358 1.384zm1.251 6.443c-.584 0-1.009-.394-1.009-.927 0-.552.425-.94 1.01-.94.609 0 1.028.388 1.028.94 0 .533-.42.927-1.029.927z" />
 				</svg>
 				Ayuda</a>
+
 			<div class="collapse navbar-collapse" id="navbarsExample03">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
+
+					</li>
+
+					<li class="nav-item">
+
 					</li>
 					<li class="nav-item">
-					</li>
-					<li class="nav-item">
+
 					</li>
 				</ul>
 			</div>
@@ -93,7 +110,7 @@
 				</div>
 			</section>
 			<section>
-				<canvas id="canvas" width="800" height="400" ></canvas>
+				<canvas id="canvas" width="800" height="400"></canvas>
 				<div class="btn-group">
 					<button type="button" class="btn btn-sm btn-outline-secondary"
 						onclick="location.href='{{ url_for('infor') }}';">Informe</button>
@@ -104,6 +121,36 @@
 			<div class="album py-5 bg-light">
 				<div class="container">
 					<div class="row">
+
+						<div class="col-md-4">
+							<div id=sc class="card mb-4 shadow-sm">
+								<!-- <div id="gincl"></div> -->
+								<div class="card-body">
+
+									<div>
+										<small class="text-muted">[d0, di] (m )=[ <span id="D00"></span>;
+											<span id="D10"></span> ]</small>
+									</div>
+									<small>
+										<a>lat=<span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"
+												id="latitud_value">
+											</span>
+											lon=<span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"
+												id="longitud_value">
+											</span>
+										</a>
+									</small>
+									<div class="d-flex justify-content-between align-items-center">
+										<div id="map" style="width: 500px; height: 350px;"></div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+
+
+
 
 						<div class="col-md-4">
 							<div id=sc class="card mb-4 shadow-sm">
@@ -170,7 +217,7 @@
 
 
 
-						<div class="col-md-4">
+						<!-- <div class="col-md-4">
 							<div id=dmp class="card mb-4 shadow-sm">
 								<img src="{{ url_for('static', filename='images/phi.png') }}"
 									class="bd-placeholder-img card-img-top" width="100%" height="225"
@@ -196,7 +243,7 @@
 										id="latitud_range">
 								</div>
 							</div>
-						</div>
+						</div> -->
 
 
 					</div>

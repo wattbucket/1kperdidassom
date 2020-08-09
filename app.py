@@ -1,21 +1,7 @@
 from flask import Flask, jsonify, render_template, request, session, json
 import pandas as pd # data wrangling
 
-from bokeh.plotting import figure
-from bokeh.embed import components
 
-from bokeh.plotting import figure, output_file, show, Column
-from bokeh.models import DataTable, TableColumn, PointDrawTool, ColumnDataSource
-
-from bokeh.events import SelectionGeometry
-from bokeh.models import ColumnDataSource, CustomJS, Rect
-from bokeh.plotting import figure, output_file, show
-
-import numpy as np
-from bokeh.plotting import figure, show
-from bokeh.models import ColumnDataSource, CustomJS, Div, Row
-from bokeh.events import *
-from math import pi
 
 app = Flask(__name__)
 
@@ -24,7 +10,6 @@ app.config['SECRET_KEY'] = 'pk'
 
 @app.route('/informe')
 def informe():
-
     beta=session["beta"]
     phi=session["phi"]
     alpha=session["alpha"]
@@ -43,7 +28,7 @@ def formulario():
     # datos del navegador
     beta = request.args.get('inclinacion', 0, type=int)
     alpha = request.args.get('orientacion', 0, type=int)
-    phi = request.args.get('latitud', 0, type=int)
+    phi = request.args.get('latitud', 0, type=float)
     punto = request.args.get('punto', 0, type=str)
     print(punto)
     # calculos
@@ -66,10 +51,10 @@ def formulario():
 
 
 
+
 @app.route('/infor')
 def infor():
     return render_template('informe.html')
-
 
 
 @app.route('/')
@@ -77,5 +62,5 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', 8000,debug=True)
+    app.run('0.0.0.0', 8001,debug=True)
     
