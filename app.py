@@ -30,7 +30,8 @@ def formulario():
     alpha = request.args.get('orientacion', 0, type=int)
     phi = request.args.get('latitud', 0, type=float)
     punto = request.args.get('punto', 0, type=str)
-    print(punto)
+
+
     # calculos
     if beta > 15:
         # P=   100*(1.2*10**(-4)*(beta-phi+10)**2+3.5*10**(-5)*alpha**2),2)
@@ -47,6 +48,10 @@ def formulario():
     session["phi"]=phi
     session["P"]=P
 
+    print('----------------valores del navegador-------------')
+
+    print(punto,phi,alpha,beta,'y de salida: ', P)
+
     return jsonify( P=P)
 
 
@@ -62,5 +67,5 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', 8001,debug=True)
+    app.run('0.0.0.0', 8000 ,debug=True)
     
