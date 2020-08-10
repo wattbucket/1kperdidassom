@@ -1,151 +1,415 @@
 
-var output4 = document.getElementById("punto");
 
 
-var c = document.getElementById("canvas"),
-    ctx = c.getContext("2d");
+// var data = {
+//     labels: ["January", "February", "March", "April", "May", "June", "July"],
+//     datasets: [
+//         {
+//             type: "Line",
+//             label: "My Line Graph",
+//             data: [65, 59, 80, 81, 56, 55, 40]
+//         },
+//         {
+//             type: "Bar",
+//             label: "My Bar Graph",
+//             data: [28, 48, 40, 19, 86, 27, 90]
+//         }
+//     ]
+// };
 
 
 
-var scatterChart = new Chart(ctx, {
-    type: 'scatter',
+
+
+var ctx = document.getElementById("canvas").getContext("2d")
+
+se=[12.083902,19.125392,23.980250,26.112375,25.241366,21.485652,15.298176, 7.279307]
+sa=[135.659777,147.914604,161.750834,176.750864,191.983172,206.397622,219.337846,230.693257]
+
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
     data: {
-        datasets: [
-            {
-                label: 'Obst_E',
-                pointRadius: 10,
-                showLine: true,
-                data: [
-                    {
-                        x: -4 * 10,
-                        y: 10
-                    },
-                    {
-                        x: -3 * 10,
-                        y: 10
-                    },
-                    {
-                        x: -2 * 10,
-                        y: 10
-                    }
-                ],
-                // data=[{xx,yy}],
-                lineTension: 0,
-                cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0,0,  0, 0.1)"
-
-            },
-            {
-                label: 'Obst_S',
-                pointRadius: 10,
-                showLine: true,
-
-                data: [
-                    {
-                        x: -1 * 10,
-                        y: 10
-
-                    },
-                    {
-                        x: -0 * 10,
-                        y: 10
-                    },
-                    {
-                        x: 1 * 10,
-                        y: 10
-                    }
-                ],
-                // data=[{xx,yy}],
-                lineTension: 0,
-                cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0, 0, 0, 0.3)"
-            },
-
-            {
-                label: 'Obst_O',
-                pointRadius: 10,
-                showLine: true,
-
-                data: [
-                    {
-                        x: 2 * 10,
-                        y: 10
-                    },
-                    {
-                        x: 3 * 10,
-                        y: 10
-                    },
-                    {
-                        x: 4 * 10,
-                        y: 10
-                    }
-                ],
-                // data=[{xx,yy}],
-                lineTension: 0,
-                cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0, 0, 0, 0.5)"
-
-            }
-
-
-
-
-        ]
+        labels: sa,
+        datasets: [{
+            label: 'My First dataset',
+            borderColor: 'rgb(255, 99, 132)',
+            data: se
+        }]
     },
-    options: {
-        dragDataRound: 0,
-        dragData: true,
-        dragX: true,
-        responsive: true,
-        scales: {
-            xAxes: [{
-                ticks: {
-                    max: 125,
-                    min: -120
-                }
-            }],
 
-            yAxes: [{
-                // type: 'linear',
-                ticks: {
-                    max: 77,
-                    min: -1
+    // Configuration options go here
+    options: {}
+});
+
+
+
+var myChart;
+        var ctx = document.getElementById('chartJSContainer').getContext('2d');
+
+        myChart = new Chart(ctx, {
+            data: {
+                datasets: [
+                    {
+                        label: 'Obst_E',
+                        pointRadius: 10,
+                        showLine: true,
+                        data: [
+                            {
+                                x: -4 * 10,
+                                y: 10
+                            },
+                            {
+                                x: -3 * 10,
+                                y: 10
+                            },
+                            {
+                                x: -2 * 10,
+                                y: 10
+                            }
+                        ],
+                        // data=[{xx,yy}],
+                        lineTension: 0,
+                        cubicInterpolationMode: 'linear',
+                        backgroundColor: "rgba(0,0,  0, 0.1)",
+                        xAxisID: "x-axis-1",
+                        type: 'scatter',
+                        dragData: true,
+                        dragX: true
+                    },
+                    {
+                        label: 'Obst_S',
+                        pointRadius: 10,
+                        showLine: true,
+                        data: [
+                            {
+                                x: -1 * 10,
+                                y: 10
+
+                            },
+                            {
+                                x: -0 * 10,
+                                y: 10
+                            },
+                            {
+                                x: 1 * 10,
+                                y: 10
+                            }
+                        ],
+                        // data=[{xx,yy}],
+                        lineTension: 0,
+                        cubicInterpolationMode: 'linear',
+                        backgroundColor: "rgba(0,0,  0, 0.1)",
+                        xAxisID: "x-axis-1",
+                        type: 'scatter',
+                        dragData: true,
+                        dragX: true
+                    },
+                    {
+                        label: 'Obst_O',
+                        pointRadius: 10,
+                        showLine: true,
+                        data: [
+                            {
+                                x: 2 * 10,
+                                y: 10
+                            },
+                            {
+                                x: 3 * 10,
+                                y: 10
+                            },
+                            {
+                                x: 4 * 10,
+                                y: 10
+                            }
+                        ],
+                        // data=[{xx,yy}],
+                        lineTension: 0,
+                        cubicInterpolationMode: 'linear',
+                        backgroundColor: "rgba(0,0,  0, 0.1)",
+                        xAxisID: "x-axis-1",
+                        type: 'scatter',
+                        dragData: true,
+                        dragX: true
+                    }, {
+                        label: 'Obst_si',
+                        pointRadius: 1,
+                        showLine: true,
+                        data: [
+                            { "index": 1576915200000, "x": -55.0887064636, "y": 3.51188166 }, { "index": 1576917000000, "x": -49.8849133491, "y": 7.9372286194 }, { "index": 1576918800000, "x": -44.3402228422, "y": 12.0839023362 }, { "index": 1576920600000, "x": -38.4148768822, "y": 15.8401134505 }, { "index": 1576922400000, "x": -32.0853956548, "y": 19.125391871 }, { "index": 1576924200000, "x": -25.3525034457, "y": 21.8631255414 }, { "index": 1576926000000, "x": -18.2491655066, "y": 23.9802498879 }, { "index": 1576927800000, "x": -10.8458066725, "y": 25.4126336843 }, { "index": 1576929600000, "x": -3.2491363827, "y": 26.1123746458 }, { "index": 1576931400000, "x": 4.407780391, "y": 26.054587409 }, { "index": 1576933200000, "x": 11.9831723765, "y": 25.2413661772 }, { "index": 1576935000000, "x": 19.3469912564, "y": 23.7014397041 }, { "index": 1576936800000, "x": 26.3976221608, "y": 21.4856521509 }, { "index": 1576938600000, "x": 33.0704484443, "y": 18.6599412689 }, { "index": 1576940400000, "x": 39.3378461083, "y": 15.2981758437 }, { "index": 1576942200000, "x": 45.2033060231, "y": 11.4772988067 }, { "index": 1576944000000, "x": 50.6932572803, "y": 7.279306595 }, { "index": 1576945800000, "x": 55.8493307816, "y": 2.8307458972 }],
+                        // data=[{xx,yy}],
+                        lineTension: 0,
+                        cubicInterpolationMode: 'monotone',
+                        backgroundColor: "rgba(0,0,  222, 0.1)",
+                        xAxisID: "x-axis-1",
+                        type: 'scatter',
+                        dragData: false,
+                        dragX: false
+                    }, {
+                        label: 'Obst_sv',
+                        pointRadius: 1,
+                        showLine: true,
+                        data: [{"index": 1561093200000, "x": -119.8603800159, "y": 1.9639924627}, {"index": 1561095000000, "x": -115.1880993582, "y": 6.8488158554}, {"index": 1561096800000, "x": -110.6889685337, "y": 12.0546220222}, {"index": 1561098600000, "x": -106.298099202, "y": 17.4447334358}, {"index": 1561100400000, "x": -101.9440071837, "y": 22.9669997088}, {"index": 1561102200000, "x": -97.5443778253, "y": 28.5839192801}, {"index": 1561104000000, "x": -92.9988934288, "y": 34.2614558565}, {"index": 1561105800000, "x": -88.1774230249, "y": 39.9642950354}, {"index": 1561107600000, "x": -82.9003008732, "y": 45.6511939135}, {"index": 1561109400000, "x": -76.9046257104, "y": 51.2680089745}, {"index": 1561111200000, "x": -69.7860936535, "y": 56.7353043517}, {"index": 1561113000000, "x": -60.9027467815, "y": 61.9245855798}, {"index": 1561114800000, "x": -49.249718647, "y": 66.6122697596}, {"index": 1561116600000, "x": -33.4834020575, "y": 70.4020065469}, {"index": 1561118400000, "x": -12.8436946631, "y": 72.6695029725}, {"index": 1561120200000, "x": 10.4659920252, "y": 72.7895601546}, {"index": 1561122000000, "x": 31.5578680306, "y": 70.721482356}, {"index": 1561123800000, "x": 47.824442607, "y": 67.057573046}, {"index": 1561125600000, "x": 59.8402535939, "y": 62.4410954728}, {"index": 1561127400000, "x": 68.9578551935, "y": 57.2913912803}, {"index": 1561129200000, "x": 76.2249894853, "y": 51.845903918}, {"index": 1561131000000, "x": 82.3155720137, "y": 46.2403725051}, {"index": 1561132800000, "x": 87.6534039557, "y": 40.5579577975}, {"index": 1561134600000, "x": 92.5128517426, "y": 34.8547255382}, {"index": 1561136400000, "x": 97.0803576148, "y": 29.1728754219}, {"index": 1561138200000, "x": 101.4901114305, "y": 23.5481010113}, {"index": 1561140000000, "x": 105.8448818788, "y": 18.0143758402}, {"index": 1561141800000, "x": 110.2284608512, "y": 12.6085361623}, {"index": 1561143600000, "x": 114.7132202981, "y": 7.3800453885}, {"index": 1561145400000, "x": 119.3646036896, "y": 2.4462735115}],
+                        lineTension: 0,
+                            cubicInterpolationMode: 'monotone',
+                            backgroundColor: "rgba(222,0,  0, 0.13)",
+                            xAxisID: "x-axis-1",
+                            type: 'scatter',
+                            dragData: false,
+                            dragX: false
+                    }
+                ]
+            },
+            options: {
+                legend: { display: true },
+                animation: false,
+                dragData: true,
+                title: {
+                    display: false,
+                    text: 'Bubble Chart for Modern and Non-Modern'
+                },
+                scales: {
+                    xAxes: [{
+                        id: "x-axis-0",
+                        scaleLabel: {
+                            display: true
+                        },
+                        gridLines: {
+                            offsetGridLines: false
+                        }
+                    }, {
+                        id: "x-axis-1",
+                        type: "linear",
+                        ticks: {
+                            min: -120,
+                            max: 120
+                        },
+                        display: true
+                    }, {
+                        id: "x-axis-2",
+                        type: "linear",
+                        ticks: {
+                            min: -5,
+                            max: 55
+                        },
+                        display: false
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: "elevacion"
+                        },
+                        gridLines: {
+                            offsetGridLines: false
+                        }
+                    }]
+                },
+                responsive: true,
+                dragData: true,
+                dragX: true,
+                dragDataRound: 0,
+                dragOptions: {
+                    // magnet: { // enable to stop dragging after a certain value
+                    //   to: Math.round
+                    // },
+                    showTooltip: true // Recommended. This will show the tooltip while the user 
+                    // drags the datapoint
+                },
+                onDragStart: function (e, element) {
+                    // console.log(element)
+                    // console.log('movido un punto')
+                },
+                onDrag: function (e, datasetIndex, index, value) {
+                    // change cursor style to grabbing during drag action
+                    e.target.style.cursor = 'grabbing'
+                    // where e = event
+                },
+
+                onDragEnd: function (e, datasetIndex, index, value) {
+                    // restore default cursor style upon drag release
+                    e.target.style.cursor = 'default'
+                    console.log('movildo un punto' + datasetIndex, datasetIndex, value.x, value.y)
+                    // where e = event
+
+
+                    // output4.innerHTML = [datasetIndex, datasetIndex, value.x, value.y];
+                    // output4.innerHTML = value;
+                    // fetchdata()
+
                 }
             }
-            ]
-        },
-        onDragStart: function (e, element) {
-            // console.log(element)
-            // console.log('movido un punto')
-        },
-        onDrag: function (e, datasetIndex, index, value) {
-            // change cursor style to grabbing during drag action
-            e.target.style.cursor = 'grabbing'
-            // where e = event
-        },
-
-        onDragEnd: function (e, datasetIndex, index, value) {
-            // restore default cursor style upon drag release
-            e.target.style.cursor = 'default'
-            console.log(datasetIndex, index, value)
-            // where e = event
 
 
-            output4.innerHTML = [datasetIndex, datasetIndex, value.x, value.y];
-            // output4.innerHTML = value;
-            fetchdata()
+        });
 
-        }
 
-        // onDragEnd: (e, datasetIndex, index, value) => {
-        //     console.log(datasetIndex, index, value)
 
-        //     this.modifyDataSet(datasetIndex, index, value);
-        // }
+// var chart = new Chart(ctx, {
+//     // The type of chart we want to create
+//     type: 'line',
+//     data: {
+//         labels: sa,
+//         datasets: [{
+//             label: 'My First dataset',
+//             borderColor: 'rgb(255, 99, 132)',
+//             data: se
+//         }]
+//     },
 
-    }
-});
-ctx.globalAlpha = 0.5
+//     // Configuration options go here
+//     options: {}
+// });
+
+
+
+
+
+
+
+// var scatterChart = new Chart(ctx, {
+//     type: 'scatter',
+//     data: {
+//         datasets: [
+//             {
+//                 label: 'Obst_E',
+//                 pointRadius: 10,
+//                 showLine: true,
+//                 data: [
+//                     {
+//                         x: -4 * 10,
+//                         y: 10
+//                     },
+//                     {
+//                         x: -3 * 10,
+//                         y: 10
+//                     },
+//                     {
+//                         x: -2 * 10,
+//                         y: 10
+//                     }
+//                 ],
+//                 // data=[{xx,yy}],
+//                 lineTension: 0,
+//                 cubicInterpolationMode: 'linear',
+//                 backgroundColor: "rgba(0,0,  0, 0.1)"
+
+//             },
+//             {
+//                 label: 'Obst_S',
+//                 pointRadius: 10,
+//                 showLine: true,
+
+//                 data: [
+//                     {
+//                         x: -1 * 10,
+//                         y: 10
+
+//                     },
+//                     {
+//                         x: -0 * 10,
+//                         y: 10
+//                     },
+//                     {
+//                         x: 1 * 10,
+//                         y: 10
+//                     }
+//                 ],
+//                 // data=[{xx,yy}],
+//                 lineTension: 0,
+//                 cubicInterpolationMode: 'linear',
+//                 backgroundColor: "rgba(0, 0, 0, 0.3)"
+//             },
+
+//             {
+//                 label: 'Obst_O',
+//                 pointRadius: 10,
+//                 showLine: true,
+
+//                 data: [
+//                     {
+//                         x: 2 * 10,
+//                         y: 10
+//                     },
+//                     {
+//                         x: 3 * 10,
+//                         y: 10
+//                     },
+//                     {
+//                         x: 4 * 10,
+//                         y: 10
+//                     }
+//                 ],
+//                 // data=[{xx,yy}],
+//                 lineTension: 0,
+//                 cubicInterpolationMode: 'linear',
+//                 backgroundColor: "rgba(0, 0, 0, 0.5)"
+
+//             }
+
+
+
+
+//         ]
+//     },
+//     options: {
+//         dragDataRound: 0,
+//         dragData: true,
+//         dragX: true,
+//         responsive: true,
+//         scales: {
+//             xAxes: [{
+//                 ticks: {
+//                     max: 120,
+//                     min: -120
+//                 }
+//             }],
+
+//             yAxes: [{
+//                 // type: 'linear',
+//                 ticks: {
+//                     max: 80,
+//                     min: 0
+//                 }
+//             }
+//             ]
+//         },
+//         onDragStart: function (e, element) {
+//             // console.log(element)
+//             // console.log('movido un punto')
+//         },
+//         onDrag: function (e, datasetIndex, index, value) {
+//             // change cursor style to grabbing during drag action
+//             e.target.style.cursor = 'grabbing'
+//             // where e = event
+//         },
+
+//         onDragEnd: function (e, datasetIndex, index, value) {
+//             // restore default cursor style upon drag release
+//             e.target.style.cursor = 'default'
+//             console.log(datasetIndex, index, value)
+//             // where e = event
+
+
+//             output4.innerHTML = [datasetIndex, datasetIndex, value.x, value.y];
+//             // output4.innerHTML = value;
+//             fetchdata()
+
+//         }
+//     }
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // $SCRIPT_ROOT = {{ request.script_root | tojson | safe }};
 
@@ -156,6 +420,9 @@ ctx.globalAlpha = 0.5
 //     output1.innerHTML = this.value;
 //     fetchdata()
 // }
+
+var output4 = document.getElementById("punto");
+
 
 var slider2 = document.getElementById("inclinacion_range");
 var output2 = document.getElementById("inclinacion_value");

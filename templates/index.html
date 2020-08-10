@@ -10,6 +10,7 @@
 
 
 
+
     <!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
@@ -36,6 +37,7 @@
         crossorigin=""></script>
     <!-- para leaflet ================================================================== -->
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/dist/css/pk.css') }}">
 
 
 </head>
@@ -91,6 +93,8 @@
     </header>
 
 
+
+
     <main role="main" class="flex-shrink-0">
         <br>
         <div class="container">
@@ -110,12 +114,12 @@
 
 
 
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary"
-                        onclick="location.href='{{ url_for('infor') }}';">Informe</button>
-                </div>
-                <span id="punto">pppp</span>
-<!-- Columns -->
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary"
+                    onclick="location.href='{{ url_for('infor') }}';">Informe</button>
+            </div>
+            <span id="punto">pppp</span>
+            <!-- Columns -->
 
 
 
@@ -123,19 +127,6 @@
             <div class="album py-5 bg-light">
                 <div class="container">
                     <div class="row">
-
-
-                        <div class="col-md-12">
-                            <div id=sc class="card mb-12 shadow-sm">
-                                <!-- <div id="gincl"></div> -->
-                                <div class="card-body">
-
-                                    <canvas id="canvas" width=239 height=155</canvas>
-
-
-                                </div>
-                            </div>
-                        </div>
 
 
 
@@ -236,51 +227,28 @@
 
 
 
-                        <!-- <div class="col-md-4">
-							<div id=dmp class="card mb-4 shadow-sm">
-								<img src="{{ url_for('static', filename='images/phi.png') }}"
-									class="bd-placeholder-img card-img-top" width="100%" height="225"
-									xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
-									focusable="false" role="img" aria-label="Placeholder: Thumbnail">
-								<title>Placeholder</title>
-								<rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-									dy=".3em"></text>
-								</svg>
-								<div class="card-body">
-									<div class="d-flex justify-content-between align-items-center">
-										<div class="btn-group">
-											<button type="button" class="btn btn-sm btn-outline-secondary"
-												onclick="location.href='{{ url_for('infor')}}';">Informe</button>
-										</div>
-									</div>
-									<small class="text-muted">Perdidas P=<span id="P2"></span> %</small>
-									<p class="card-text">
-										<a>Latitud &Phi;=<span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"
-												id="latitud_value"></span></a>
-									</p>
-									<input type="range" class="custom-range" min="35" max="45" value="40" step="1"
-										id="latitud_range">
-								</div>
-							</div>
-						</div> -->
+                        <div class="col-md-12">
+                            <div id=sc class="card mb-12 shadow-sm">
+                                <!-- <div id="gincl"></div> -->
+                                <div class="card-body">
+                                    <div class="backgroundA">
+                                        <canvas id="canvas" </canvas>
+                                            div test 1
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
+
+
                 </div>
             </div>
         </div>
-    </main>
-
-    <main role="main" class="container">
-        <div>
-            <br><br>
-            <h1> </h1>
-            <p class="lead"></p>
-            <!-- <a href=# id=calculate>calcula en el servidor</a> -->
-            <div>
-            </div>
         </div>
     </main>
+
 
     <footer class="container">
         <p>&copy; 1kwm2 2020</p>
@@ -295,8 +263,7 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
     <script type=text/javascript>
-$SCRIPT_ROOT = {{ request.script_root | tojson | safe }};
-
+    $SCRIPT_ROOT = {{ request.script_root | tojson | safe }};
     </script>
 
 
@@ -305,32 +272,9 @@ $SCRIPT_ROOT = {{ request.script_root | tojson | safe }};
 
     <script src="{{ url_for('static', filename='assets/dist/js/pk.js') }}"></script>
 
-    
-    <script>
 
 
-var c = document.getElementById("canvas1");
-		var ctx = c.getContext("2d");
-		ctx.beginPath();
-		ctx.arc(95, 50, 40, 0, 2 * Math.PI);
-		ctx.stroke();
-    </script>
 
-	<style>
-		canvas {
-			background-image: url({{ url_for('static', filename='images/sombras1.png') }});
-			background-size: 100% ; 
-            width: 100%;
-            height: auto;
-        }
-        
-        canvas1 {
-			background-image: url({{ url_for('static', filename='images/sombras1.png') }});
-			background-size: 100% ; 
-            width: 100%;
-            height: auto;
-		}
-	</style>
 
 </body>
 
