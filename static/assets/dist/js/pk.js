@@ -157,7 +157,7 @@ var scatterChart = new Chart(ctx, {
             // where e = event
 
 
-            output4.innerHTML = [datasetIndex, datasetIndex, value.x, value.y];
+            output4.innerHTML = [datasetIndex, index, value.x, value.y];
             // output4.innerHTML = value;
             fetchdata()
 
