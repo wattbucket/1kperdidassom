@@ -2,10 +2,10 @@
 var output4 = document.getElementById("punto");
 
 
-var canvas = document.getElementById("canvas"),
-    ctx = canvas.getContext("2d");
-// canvas.width = 200;
-// canvas.height = 100;
+var c = document.getElementById("canvas"),
+    ctx = c.getContext("2d");
+
+
 
 var scatterChart = new Chart(ctx, {
     type: 'scatter',
@@ -17,15 +17,15 @@ var scatterChart = new Chart(ctx, {
                 showLine: true,
                 data: [
                     {
-                        x: -4*10,
+                        x: -4 * 10,
                         y: 10
                     },
                     {
-                        x: -3*10,
+                        x: -3 * 10,
                         y: 10
                     },
                     {
-                        x: -2*10,
+                        x: -2 * 10,
                         y: 10
                     }
                 ],
@@ -42,16 +42,16 @@ var scatterChart = new Chart(ctx, {
 
                 data: [
                     {
-                        x: -1*10,
+                        x: -1 * 10,
                         y: 10
 
                     },
                     {
-                        x: -0*10,
+                        x: -0 * 10,
                         y: 10
                     },
                     {
-                        x: 1*10,
+                        x: 1 * 10,
                         y: 10
                     }
                 ],
@@ -68,15 +68,15 @@ var scatterChart = new Chart(ctx, {
 
                 data: [
                     {
-                        x: 2*10,
+                        x: 2 * 10,
                         y: 10
                     },
                     {
-                        x: 3*10,
+                        x: 3 * 10,
                         y: 10
                     },
                     {
-                        x: 4*10,
+                        x: 4 * 10,
                         y: 10
                     }
                 ],
@@ -96,14 +96,11 @@ var scatterChart = new Chart(ctx, {
         dragDataRound: 0,
         dragData: true,
         dragX: true,
-        maintainAspectRatio: true,
-        responsive: false,
+        responsive: true,
         scales: {
             xAxes: [{
-                // type: 'linear',
-                // position: 'bottom',
                 ticks: {
-                    max: 120,
+                    max: 125,
                     min: -120
                 }
             }],
@@ -111,8 +108,8 @@ var scatterChart = new Chart(ctx, {
             yAxes: [{
                 // type: 'linear',
                 ticks: {
-                    max: 80,
-                    min: 0
+                    max: 77,
+                    min: -1
                 }
             }
             ]
@@ -134,7 +131,7 @@ var scatterChart = new Chart(ctx, {
             // where e = event
 
 
-            output4.innerHTML = [datasetIndex, datasetIndex ,value.x, value.y];
+            output4.innerHTML = [datasetIndex, datasetIndex, value.x, value.y];
             // output4.innerHTML = value;
             fetchdata()
 
@@ -148,7 +145,7 @@ var scatterChart = new Chart(ctx, {
 
     }
 });
-ctx.globalAlpha = 0.99
+ctx.globalAlpha = 0.5
 
 // $SCRIPT_ROOT = {{ request.script_root | tojson | safe }};
 
@@ -177,12 +174,14 @@ slider3.oninput = function () {
 }
 
 
+
+
 function initialize() {
     // Initialize the map
     var map = L.map('map').setView([40, -4], 5);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-        maxZoom: 18
+        maxNativeZoom: 25
     }).addTo(map);
 
 
@@ -236,7 +235,7 @@ function fetchdata() {
 
 
 
-document.addEventListener("DOMContentLoaded", function () { fetchdata();initialize() }, false);
+document.addEventListener("DOMContentLoaded", function () { fetchdata(); initialize() }, false);
 //   document.addEventListener("mouseup", function () { fetchdata() }, false);
 //   document.addEventListener("touchmove", function () { fetchdata() }, false);
 // console.log(datasets)
