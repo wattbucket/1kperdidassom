@@ -103,17 +103,21 @@ var scatterChart = new Chart(ctx, {
                 data: [
                     {
                         x: -100,
-                        y: 3
+                        y: 0
                     },
                     {
                         x: -50,
-                        y: 6
+                        y: 3
+                    },
+                    {
+                        x: -30,
+                        y: 0
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0,0,  0, 0.3)"
+                backgroundColor: "rgba(100,50,  30, 0.5)"
 
             },
             {
@@ -123,18 +127,22 @@ var scatterChart = new Chart(ctx, {
                 data: [
                     {
                         x: -10,
-                        y: 5
+                        y: 0
 
                     },
                     {
                         x: -0,
                         y: 30
+                    },
+                    {
+                        x: 10,
+                        y: 0
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0,0, 0, 0.3)"
+                backgroundColor: "rgba(0,222, 0, 0.5)"
             },
 
             {
@@ -144,17 +152,21 @@ var scatterChart = new Chart(ctx, {
                 data: [
                     {
                         x: 50,
-                        y: 5
+                        y: 0
                     },
                     {
                         x: 70,
                         y: 2
+                    },
+                    {
+                        x: 115,
+                        y: 0
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0, 0, 0, 0.3)"
+                backgroundColor: "rgba(0, 0, 0, 0.5)"
 
             }
             ,
