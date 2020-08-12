@@ -97,7 +97,26 @@ var scatterChart = new Chart(ctx, {
             // }
             // ,
             {
-                label: 'Obst_E',
+                label: '0',
+                pointRadius: 10,
+                showLine: true,
+                data: [
+                    {
+                        x: -115,
+                        y: 1
+                    },
+                    {
+                        x: -100,
+                        y: 3
+                    }
+                ],
+                // data=[{xx,yy}],
+                lineTension: 0,
+                cubicInterpolationMode: 'linear',
+                backgroundColor: "rgba(222,0,  0, 0.3)"
+
+            },            {
+                label: '1',
                 pointRadius: 10,
                 showLine: true,
                 data: [
@@ -106,39 +125,120 @@ var scatterChart = new Chart(ctx, {
                         y: 3
                     },
                     {
+                        x: -60,
+                        y: 1
+                    }
+                ],
+                // data=[{xx,yy}],
+                lineTension: 0,
+                cubicInterpolationMode: 'linear',
+                backgroundColor: "rgba(0,222,  0, 0.3)"
+
+            },
+            {
+                label: '2',
+                pointRadius: 10,
+                showLine: true,
+                data: [
+                    {
                         x: -50,
+                        y: 3
+                    },
+                    {
+                        x: -40,
                         y: 6
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0,0,  0, 0.3)"
+                backgroundColor: "rgba(0,0,  222, 0.3)"
 
             },
             {
-                label: 'Obst_S',
+                label: '3',
                 pointRadius: 10,
                 showLine: true,
                 data: [
                     {
-                        x: -10,
-                        y: 5
-
+                        x: -40,
+                        y: 15
                     },
                     {
-                        x: -0,
-                        y: 30
+                        x: -20,
+                        y: 15
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0,0, 0, 0.3)"
+                backgroundColor: "rgba(111,111,  0, 0.3)"
+
+            },
+            {
+                label: '4',
+                pointRadius: 10,
+                showLine: true,
+                data: [
+                    {
+                        x: -10,
+                        y: 3
+                    },
+                    {
+                        x: -0,
+                        y: 6
+                    }
+                ],
+                // data=[{xx,yy}],
+                lineTension: 0,
+                cubicInterpolationMode: 'linear',
+                backgroundColor: "rgba(0,111,  111, 0.3)"
+
+            },
+            {
+                label: '5',
+                pointRadius: 10,
+                showLine: true,
+                data: [
+                    {
+                        x: 0,
+                        y: 15
+
+                    },
+                    {
+                        x: 10,
+                        y: 25
+                    }
+                ],
+                // data=[{xx,yy}],
+                lineTension: 0,
+                cubicInterpolationMode: 'linear',
+                backgroundColor: "rgba(111,0, 222, 0.3)"
             },
 
             {
-                label: 'Obst_O',
+                label: '6',
+                pointRadius: 10,
+                showLine: true,
+                data: [
+                    {
+                        x: 30,
+                        y: 5
+                    },
+                    {
+                        x: 50,
+                        y: 7
+                    }
+                ],
+                // data=[{xx,yy}],
+                lineTension: 0,
+                cubicInterpolationMode: 'linear',
+                backgroundColor: "rgba(0, 0, 0, 0.3)"
+
+            }
+            ,
+            {
+                label: '7',
                 pointRadius: 10,
                 showLine: true,
                 data: [
@@ -154,7 +254,7 @@ var scatterChart = new Chart(ctx, {
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0, 0, 0, 0.3)"
+                backgroundColor: "rgba(44, 222, 44, 0.3)"
 
             }
             ,
