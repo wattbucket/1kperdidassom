@@ -319,9 +319,9 @@ function fetchdata() {
         'orientacion': document.getElementById("orientacion_value").innerHTML,
         'punto': document.getElementById("punto").innerHTML,
     }, function (data) {
-        // $("#P").text(data.P);
-        // $("#P1").text(data.P);
-        // $("#P2").text(data.P);
+        $("#P").text(data.P);
+        $("#P1").text(data.P);
+        $("#P2").text(data.P);
     });
     // alert('Disculpe, esta en mantenimiento, proximamente estara operativo')
 

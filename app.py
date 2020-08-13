@@ -24,14 +24,11 @@ def informe():
     latitud=session["latitud"]
     longitud=session["longitud"]
     inclinacion=session["inclinacion"]
-    punto=session["punto"]
-
-
-
+    P=session["P"]
 
 
     #  devuelta navegador
-    informe=render_template('notebook.html')
+    informe=render_template('notebook.html', P=P)
     return jsonify( informe=informe)
 
 
@@ -102,6 +99,7 @@ def formulario():
     url=url+"&aspect=44"    #Orientation (azimuth) angle of the (fixed) PV system, 0=south, 90=west, -90=east.
     url=url+"&localtime=1"
     url=url+"&outputformat=json"
+    print(url)
     # hh=[0,10,20,80,40,15,25,5]
     url=url+"&userhorizon="+str(hh).strip('[]')
     # print(url)
@@ -111,17 +109,23 @@ def formulario():
     print(j)
 
     # 
+    # calculo de las perdidas
+    P=99
+
+
+    # 
     session["latitud"]=latitud
     session["longitud"]=longitud
     session["inclinacion"]=inclinacion
     session["orientacion"]=orientacion
     session["p"]=p
+    session["P"]=P # Perdidas
     perd=33
     print('----------------valores del navegador-------------')
 
     # print(p,'y de salida: ')
 
-    return jsonify(perd=perd)
+    return jsonify(P=P)
 
 
 
@@ -129,6 +133,8 @@ def formulario():
 @app.route('/infor')
 def infor():
     return render_template('informe.html')
+
+
 
 
 @app.route('/')
