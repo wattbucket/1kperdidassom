@@ -133,8 +133,7 @@
                                 <div class="card-body">
 
                                     <div>
-                                        <small class="text-muted">[d0, di] (m )=[ <span id="D00"></span>;
-                                            <span id="D10"></span> ]</small>
+                                        <small class="text-muted">Perdidas P=<span id="P3"></span> %</small>
                                     </div>
                                     <small>
                                         <a>lat=<span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"
@@ -175,7 +174,7 @@
                                                 onclick="location.href='{{ url_for('infor')}}';">Informe</button>
                                         </div>
                                     </div>
-                                    <small class="text-muted">Perdidas P=<span id="P"></span> %</small>
+                                    <small class="text-muted">Perdidas P=<span id="P0"></span> %</small>
                                     <p class="card-text">
                                         <a>Inclinacion &beta;=
                                             <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"
@@ -220,20 +219,23 @@
                             </div>
                         </div>
 
-<!-- 
+                        <!-- 
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-secondary"
                                 onclick="location.href='{{ url_for('infor') }}';">Informe</button>
                         </div> -->
-                        <p>obstaculo,punto,azimut,elevacion = <span id="punto"></span></p>
                         
+                            <span id="punto"></span>
+                            <p>Perdidas=<span id="PP2"></span>
+                            </p>
+
                         <!-- Columns -->
                         <div class="col-md-12">
                             <div id=sc class="card mb-12 shadow-sm">
                                 <!-- <div id="gincl"></div> -->
                                 <div class="card-body">
                                     <div class="backgroundA">
-                                        <canvas id="canvas"  width="300" height="250" </canvas>
+                                        <canvas id="canvas" width="300" height="250" </canvas>
                                             div test 1
                                     </div>
 

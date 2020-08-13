@@ -142,7 +142,7 @@ def formulario():
 
     session.pop('P', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
     P=100-Es*100/E
-    print(P) 
+    P=round(P,2)
     # 
     # calculo de las perdidas
 

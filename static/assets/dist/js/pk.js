@@ -17,18 +17,19 @@ var scatterChart = new Chart(ctx, {
                 showLine: true,
                 data: [
                     {
-                        x: -115,
-                        y: 1
+                        x: -80,
+                        y: 0
+
                     },
                     {
                         x: -100,
-                        y: 3
+                        y: 0
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(222,0,  0, 0.3)"
+                backgroundColor: "rgba(0,0,  0, 0.3)"
 
             },            {
                 label: '1',
@@ -36,18 +37,18 @@ var scatterChart = new Chart(ctx, {
                 showLine: true,
                 data: [
                     {
-                        x: -100,
-                        y: 3
+                        x: -40,
+                        y: 0
                     },
                     {
                         x: -60,
-                        y: 1
+                        y: 0
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0,222,  0, 0.3)"
+                backgroundColor: "rgba(0,0,  0, 0.3)"
 
             },
             {
@@ -56,18 +57,18 @@ var scatterChart = new Chart(ctx, {
                 showLine: true,
                 data: [
                     {
-                        x: -50,
-                        y: 3
+                        x: 0,
+                        y: 5
                     },
                     {
-                        x: -40,
-                        y: 6
+                        x: -20,
+                        y: 0
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0,0,  222, 0.3)"
+                backgroundColor: "rgba(0,0,  0, 0.3)"
 
             },
             {
@@ -76,18 +77,18 @@ var scatterChart = new Chart(ctx, {
                 showLine: true,
                 data: [
                     {
-                        x: -40,
-                        y: 15
+                        x: 0,
+                        y: 10
                     },
                     {
-                        x: -20,
-                        y: 15
+                        x: 20,
+                        y: 0
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(111,111,  0, 0.3)"
+                backgroundColor: "rgba(0,0,  0, 0.3)"
 
             },
             {
@@ -96,18 +97,18 @@ var scatterChart = new Chart(ctx, {
                 showLine: true,
                 data: [
                     {
-                        x: -10,
-                        y: 3
+                        x: 40,
+                        y: 0
                     },
                     {
-                        x: -0,
-                        y: 6
+                        x: 60,
+                        y: 0
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0,111,  111, 0.3)"
+                backgroundColor: "rgba(0,0,  0, 0.3)"
 
             },
             {
@@ -116,70 +117,29 @@ var scatterChart = new Chart(ctx, {
                 showLine: true,
                 data: [
                     {
-                        x: 0,
-                        y: 15
+                        x: 80,
+                        y: 0
 
                     },
                     {
-                        x: 10,
-                        y: 25
+                        x: 100,
+                        y: 0
                     }
                 ],
                 // data=[{xx,yy}],
                 lineTension: 0,
                 cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(111,0, 222, 0.3)"
+                backgroundColor: "rgba(0,0, 0, 0.3)"
             },
 
-            {
-                label: '6',
-                pointRadius: 10,
-                showLine: true,
-                data: [
-                    {
-                        x: 30,
-                        y: 5
-                    },
-                    {
-                        x: 50,
-                        y: 7
-                    }
-                ],
-                // data=[{xx,yy}],
-                lineTension: 0,
-                cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(0, 0, 0, 0.3)"
 
-            }
-            ,
-            {
-                label: '7',
-                pointRadius: 10,
-                showLine: true,
-                data: [
-                    {
-                        x: 50,
-                        y: 5
-                    },
-                    {
-                        x: 70,
-                        y: 2
-                    }
-                ],
-                // data=[{xx,yy}],
-                lineTension: 0,
-                cubicInterpolationMode: 'linear',
-                backgroundColor: "rgba(44, 222, 44, 0.3)"
-
-            }
-            ,
             {
                 label: 'SV',
                 pointRadius: 0.1,
                 showLine: true,
                 data:
                     [{ "index": 1561093200000, "x": -119.8603800159, "y": 1.9639924627 }, { "index": 1561095000000, "x": -115.1880993582, "y": 6.8488158554 }, { "index": 1561096800000, "x": -110.6889685337, "y": 12.0546220222 }, { "index": 1561098600000, "x": -106.298099202, "y": 17.4447334358 }, { "index": 1561100400000, "x": -101.9440071837, "y": 22.9669997088 }, { "index": 1561102200000, "x": -97.5443778253, "y": 28.5839192801 }, { "index": 1561104000000, "x": -92.9988934288, "y": 34.2614558565 }, { "index": 1561105800000, "x": -88.1774230249, "y": 39.9642950354 }, { "index": 1561107600000, "x": -82.9003008732, "y": 45.6511939135 }, { "index": 1561109400000, "x": -76.9046257104, "y": 51.2680089745 }, { "index": 1561111200000, "x": -69.7860936535, "y": 56.7353043517 }, { "index": 1561113000000, "x": -60.9027467815, "y": 61.9245855798 }, { "index": 1561114800000, "x": -49.249718647, "y": 66.6122697596 }, { "index": 1561116600000, "x": -33.4834020575, "y": 70.4020065469 }, { "index": 1561118400000, "x": -12.8436946631, "y": 72.6695029725 }, { "index": 1561120200000, "x": 10.4659920252, "y": 72.7895601546 }, { "index": 1561122000000, "x": 31.5578680306, "y": 70.721482356 }, { "index": 1561123800000, "x": 47.824442607, "y": 67.057573046 }, { "index": 1561125600000, "x": 59.8402535939, "y": 62.4410954728 }, { "index": 1561127400000, "x": 68.9578551935, "y": 57.2913912803 }, { "index": 1561129200000, "x": 76.2249894853, "y": 51.845903918 }, { "index": 1561131000000, "x": 82.3155720137, "y": 46.2403725051 }, { "index": 1561132800000, "x": 87.6534039557, "y": 40.5579577975 }, { "index": 1561134600000, "x": 92.5128517426, "y": 34.8547255382 }, { "index": 1561136400000, "x": 97.0803576148, "y": 29.1728754219 }, { "index": 1561138200000, "x": 101.4901114305, "y": 23.5481010113 }, { "index": 1561140000000, "x": 105.8448818788, "y": 18.0143758402 }, { "index": 1561141800000, "x": 110.2284608512, "y": 12.6085361623 }, { "index": 1561143600000, "x": 114.7132202981, "y": 7.3800453885 }, { "index": 1561145400000, "x": 119.3646036896, "y": 2.4462735115 }],
-                backgroundColor: "rgba(222,0,  0, 0.01)",
+                backgroundColor: "rgba(0,0,  0, 0.01)",
                 dragData: false,
                 dragX: false
             }
@@ -197,6 +157,9 @@ var scatterChart = new Chart(ctx, {
         ]
     },
     options: {
+        legend: {
+            display: false
+        },
         dragDataRound: 0,
         dragData: true,
         dragX: true,
@@ -319,9 +282,10 @@ function fetchdata() {
         'orientacion': document.getElementById("orientacion_value").innerHTML,
         'punto': document.getElementById("punto").innerHTML,
     }, function (data) {
-        $("#P").text(data.P);
+        $("#P0").text(data.P);
         $("#P1").text(data.P);
-        $("#P2").text(data.P);
+        $("#PP2").text(data.P);
+        $("#P3").text(data.P);
     });
     // alert('Disculpe, esta en mantenimiento, proximamente estara operativo')
 
