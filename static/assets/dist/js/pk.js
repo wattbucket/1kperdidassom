@@ -10,92 +10,7 @@ var scatterChart = new Chart(ctx, {
     type: 'scatter',
     data: {
         datasets: [
-            // {
-            //     label: 'Obst_Es',
-            //     pointRadius: 10,
-            //     showLine: true,
-            //     data: [
-            //         {
-            //             x: -110,
-            //             y: 0
-            //         }
-            //         ,
-            //         {
-            //             x: -109,
-            //             y: 2
-            //         }
-            //         ,
-            //         {
-            //             x: -60,
-            //             y: 4
-            //         }
-            //         , {
-            //             x: -55,
-            //             y: 3
-            //         }
-            //         ,
-            //         {
-            //             x: -54,
-            //             y: 0
-            //         }
-            //         ,
-            //         {
-            //             x: -20,
-            //             y: 0
-            //         }
-            //         ,
-            //         {
-            //             x: -19,
-            //             y: 20
 
-            //         }
-            //         ,
-            //         {
-            //             x: -0,
-            //             y: 22
-            //         }
-            //         ,
-            //         {
-            //             x: 19,
-            //             y: 20
-            //         }
-
-            //         ,
-            //         {
-            //             x: 20,
-            //             y: 0
-            //         }
-            //         ,
-            //         {
-            //             x: 30,
-            //             y: 0
-            //         }
-            //         , {
-            //             x: 31,
-            //             y: 5
-            //         }
-            //         ,
-            //         {
-            //             x: 40,
-            //             y: 7
-            //         }
-            //         ,                    {
-            //             x: 60,
-            //             y: 2
-            //         }
-            //         ,
-            //         {
-            //             x: 61,
-            //             y: 0
-            //         }
-            //     ],
-            //     // data=[{xx,yy}],
-            //     lineTension: 0,
-            //     cubicInterpolationMode: 'linear',
-            //     backgroundColor: "rgba(0,0,  0, 0.5)"
-
-            // }
-            // ,
             {
                 label: '0',
                 pointRadius: 10,
@@ -279,10 +194,6 @@ var scatterChart = new Chart(ctx, {
                 dragData: false,
                 dragX: false
             }
-
-
-
-
         ]
     },
     options: {
@@ -403,13 +314,14 @@ function initialize() {
 function fetchdata() {
     $.getJSON($SCRIPT_ROOT + '/formulario', {
         'latitud': document.getElementById("latitud_value").innerHTML,
+        'longitud': document.getElementById("longitud_value").innerHTML,
         'inclinacion': document.getElementById("inclinacion_value").innerHTML,
         'orientacion': document.getElementById("orientacion_value").innerHTML,
         'punto': document.getElementById("punto").innerHTML,
     }, function (data) {
-        $("#P").text(data.P);
-        $("#P1").text(data.P);
-        $("#P2").text(data.P);
+        // $("#P").text(data.P);
+        // $("#P1").text(data.P);
+        // $("#P2").text(data.P);
     });
     // alert('Disculpe, esta en mantenimiento, proximamente estara operativo')
 
