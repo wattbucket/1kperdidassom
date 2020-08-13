@@ -49,9 +49,7 @@ def informe():
 @app.route('/formulario')
 def formulario():
     p=session["p"]
-    E=session["E"]
-    Es=session["Es"]
-    P=session["P"]
+
 
     # datos del navegador
     latitud = request.args.get('latitud', 0, type=float)
@@ -103,6 +101,9 @@ def formulario():
     hh=st.tolist()
     hh = [round(x,2) for x in hh]
     hh=hh[0:359]
+
+
+
     # Calculos
     # ????????????????   irraciacion
     # url="https://re.jrc.ec.europa.eu/api/DRcalc?lat="+lat+"&lon="+lon+"&month="+mes+"&global=1"
@@ -120,9 +121,28 @@ def formulario():
     data = r.json()
     session.pop('Es', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
     Es=data["outputs"]["totals"]["fixed"]["E_y"]
+
+
+    #  sin sombras
+    url="https://re.jrc.ec.europa.eu/api/PVcalc?lat="+str(latitud)+"&lon="+str(longitud)+"&peakpower=1&loss=0"
+    url=url+"&angle=30" # angle Inclination angle from horizontal plane of the (fixed) PV system. 
+    url=url+"&aspect=44"    #Orientation (azimuth) angle of the (fixed) PV system, 0=south, 90=west, -90=east.
+    url=url+"&localtime=1"
+    url=url+"&outputformat=json"
+    print(url)
+    hh=[0,0,0,0,0,0,0,0]
+    # url=url+"&userhorizon="+str(hh).strip('[]')
+    # print(url)
+    r = requests.get(url)
+    data = r.json()
+    session.pop('Es', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
+    E=data["outputs"]["totals"]["fixed"]["E_y"]
+
+
+
     session.pop('P', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
     P=100-Es*100/E
-
+    print(P) 
     # 
     # calculo de las perdidas
 
@@ -148,65 +168,19 @@ def formulario():
 @app.route('/')
 def index():
 
-    latitud = 36.664
-    longitud = -4.458
-    inclinacion = 30
-    orientacion = 0
+
     p=[[-115,1],[-100,3],[-100,3],[-60,1],[-50,3],[-40,6],[-40,15],[-20,15],[-10,3],[0,6],[0,15],[10,25],[30,5],[50,7],[50,5],[70,2]]
-    # session["df"]=df
-    st=pd.Series(0, index=np.arange(360))
-    hh=st.tolist()
-    hh = [round(x,2) for x in hh]
-    hh=hh[0:359]
-
-
-    # Calculos
-
-    # Energia sin obstaculos
-    # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    # url="https://re.jrc.ec.europa.eu/api/DRcalc?lat="+lat+"&lon="+lon+"&month="+mes+"&global=1"
-
-    url="https://re.jrc.ec.europa.eu/api/PVcalc?lat="+str(latitud)+"&lon="+str(longitud)+"&peakpower=1&loss=0"
-    url=url+"&angle="+str(inclinacion) # angle Inclination angle from horizontal plane of the (fixed) PV system. 
-    url=url+"&aspect="+str(orientacion)    #Orientation (azimuth) angle of the (fixed) PV system, 0=south, 90=west, -90=east.
-    url=url+"&localtime=1"
-    url=url+"&outputformat=json"
-    print(url)
-    # hh=[0,10,20,80,40,15,25,5]
-    url=url+"&userhorizon="+str(hh).strip('[]')
-    print(url)
-    r = requests.get(url)
-    # 
-    data = r.json()
-    Es=data["outputs"]["totals"]["fixed"]["E_y"]
-    # print(E)
-    # ////////////////////////////////////////////////////////////////////////////
-    E=Es
-    P=100-Es*100/E
-    # 
-    # calculo de las perdidas
 
 
 
 
-
-
-    session["latitud"]=latitud
-    session["longitud"]=longitud
-    session["inclinacion"]=inclinacion
-    session["orientacion"]=orientacion
     session["p"]=p
 
-    session["E"]=E
-    session["Es"]=Es
-    session["P"]=P # Perdidas
 
 
 
 
-
-
-    return render_template('index.html',latitud_value=latitud,longitud_value=longitud)
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 8000 ,debug=True)
