@@ -19,11 +19,22 @@ app.config['SECRET_KEY'] = 'pk'
 
 
 
+@app.route('/infor')
+def infor():
+    return render_template('informe.html')
+
+
+
+
+
 @app.route('/informe')
 def informe():
     latitud=session["latitud"]
     longitud=session["longitud"]
     inclinacion=session["inclinacion"]
+
+    E=session["E"]
+    Es=session["Es"]
     P=session["P"]
 
 
@@ -38,7 +49,9 @@ def informe():
 @app.route('/formulario')
 def formulario():
     p=session["p"]
-
+    E=session["E"]
+    Es=session["Es"]
+    P=session["P"]
 
     # datos del navegador
     latitud = request.args.get('latitud', 0, type=float)
@@ -70,10 +83,10 @@ def formulario():
 
     st=pd.Series(0, index=np.arange(360))
     df=pd.DataFrame(p, index=index)
-    session.pop('p', None)
+    session.pop('p', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
     # actualiza con el punto del front
     pp = pd.DataFrame([x.split(',') for x in punto.split('\n')])
-    pp=pp.astype(int) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
+    pp=pp.astype(int) 
     # actualiza la tabla de puntos
     df.loc[pp.at[0,0]].at[pp.at[0,1],0]=pp.at[0,2]
     df.loc[pp.at[0,0]].at[pp.at[0,1],1]=pp.at[0,3]
@@ -105,12 +118,13 @@ def formulario():
     # print(url)
     r = requests.get(url)
     data = r.json()
-    j=data["outputs"]["totals"]
-    print(j)
+    session.pop('Es', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
+    Es=data["outputs"]["totals"]["fixed"]["E_y"]
+    session.pop('P', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
+    P=100-Es*100/E
 
     # 
     # calculo de las perdidas
-    P=99
 
 
     # 
@@ -119,9 +133,9 @@ def formulario():
     session["inclinacion"]=inclinacion
     session["orientacion"]=orientacion
     session["p"]=p
-    session["P"]=P # Perdidas
-    perd=33
-    print('----------------valores del navegador-------------')
+    session["Es"]=Es
+    session["P"]=P # Perdidas    
+    # print('----------------valores del navegador-------------')
 
     # print(p,'y de salida: ')
 
@@ -130,21 +144,69 @@ def formulario():
 
 
 
-@app.route('/infor')
-def infor():
-    return render_template('informe.html')
-
-
-
 
 @app.route('/')
 def index():
+
+    latitud = 36.664
+    longitud = -4.458
+    inclinacion = 30
+    orientacion = 0
     p=[[-115,1],[-100,3],[-100,3],[-60,1],[-50,3],[-40,6],[-40,15],[-20,15],[-10,3],[0,6],[0,15],[10,25],[30,5],[50,7],[50,5],[70,2]]
     # session["df"]=df
+    st=pd.Series(0, index=np.arange(360))
+    hh=st.tolist()
+    hh = [round(x,2) for x in hh]
+    hh=hh[0:359]
+
+
+    # Calculos
+
+    # Energia sin obstaculos
+    # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    # url="https://re.jrc.ec.europa.eu/api/DRcalc?lat="+lat+"&lon="+lon+"&month="+mes+"&global=1"
+
+    url="https://re.jrc.ec.europa.eu/api/PVcalc?lat="+str(latitud)+"&lon="+str(longitud)+"&peakpower=1&loss=0"
+    url=url+"&angle="+str(inclinacion) # angle Inclination angle from horizontal plane of the (fixed) PV system. 
+    url=url+"&aspect="+str(orientacion)    #Orientation (azimuth) angle of the (fixed) PV system, 0=south, 90=west, -90=east.
+    url=url+"&localtime=1"
+    url=url+"&outputformat=json"
+    print(url)
+    # hh=[0,10,20,80,40,15,25,5]
+    url=url+"&userhorizon="+str(hh).strip('[]')
+    print(url)
+    r = requests.get(url)
+    # 
+    data = r.json()
+    Es=data["outputs"]["totals"]["fixed"]["E_y"]
+    # print(E)
+    # ////////////////////////////////////////////////////////////////////////////
+    E=Es
+    P=100-Es*100/E
+    # 
+    # calculo de las perdidas
+
+
+
+
+
+
+    session["latitud"]=latitud
+    session["longitud"]=longitud
+    session["inclinacion"]=inclinacion
+    session["orientacion"]=orientacion
     session["p"]=p
 
+    session["E"]=E
+    session["Es"]=Es
+    session["P"]=P # Perdidas
 
-    return render_template('index.html')
+
+
+
+
+
+    return render_template('index.html',latitud_value=latitud,longitud_value=longitud)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 8000 ,debug=True)
