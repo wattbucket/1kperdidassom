@@ -56,9 +56,11 @@ def formulario():
     longitud = request.args.get('longitud', 0, type=float)
     inclinacion = request.args.get('inclinacion', 0, type=int)
     orientacion = request.args.get('orientacion', 0, type=int)
-    punto = request.args.get('punto', 0, type=str)
+    # punto = request.args.get('punto', 0, type=str)
     # 
-
+    punto="5,0,-180,50"
+    # latitud=40
+    # longitud=-4
 
     def horizonte(p,df):
         dfp=df.loc[p,:]
@@ -132,7 +134,7 @@ def formulario():
     url=url+"&outputformat=json"
     print(url)
     hh=[0,0,0,0,0,0,0,0]
-    # url=url+"&userhorizon="+str(hh).strip('[]')
+    url=url+"&userhorizon="+str(hh).strip('[]')
     # print(url)
     r = requests.get(url)
     data = r.json()
@@ -171,10 +173,6 @@ def index():
 
 
     p=[[-80,0],[-100,0],[-40,0],[-60,0],[-0,5],[-20,0],[0,10],[20,0],[40,0],[60,0],[80,0],[100,0]]
-
-
-
-
     session["p"]=p
 
 

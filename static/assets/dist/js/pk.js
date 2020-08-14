@@ -1,6 +1,5 @@
 
-var output4 = document.getElementById("punto");
-
+var output_punto = document.getElementById("punto_value");
 
 var c = document.getElementById("canvas"),
     ctx = c.getContext("2d");
@@ -31,7 +30,7 @@ var scatterChart = new Chart(ctx, {
                 cubicInterpolationMode: 'linear',
                 backgroundColor: "rgba(0,0,  0, 0.3)"
 
-            },            {
+            }, {
                 label: '1',
                 pointRadius: 10,
                 showLine: true,
@@ -198,7 +197,7 @@ var scatterChart = new Chart(ctx, {
             // where e = event
 
 
-            output4.innerHTML = [datasetIndex, index, value.x, value.y];
+            output_punto.innerHTML = [datasetIndex, index, value.x, value.y];
             // output4.innerHTML = value;
             fetchdata()
 
@@ -207,15 +206,6 @@ var scatterChart = new Chart(ctx, {
 });
 
 
-// $SCRIPT_ROOT = {{ request.script_root | tojson | safe }};
-
-// var slider1 = document.getElementById("latitud_range");
-// var output1 = document.getElementById("latitud_value");
-// output1.innerHTML = slider1.value;
-// slider1.oninput = function () {
-//     output1.innerHTML = this.value;
-//     fetchdata()
-// }
 
 var slider2 = document.getElementById("inclinacion_range");
 var output2 = document.getElementById("inclinacion_value");
@@ -241,25 +231,35 @@ function initialize() {
     var map = L.map('map').setView([40, -4], 5);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-        maxNativeZoom: 25
+        maxNativeZoom: 18
     }).addTo(map);
 
 
     // Event Handlers
+
     var output_lat = document.getElementById("latitud_value");
     var output_lon = document.getElementById("longitud_value");
-    var theMarker = {};
+
+    var callBack = function () {
+        console.log("Map successfully loaded");
+        output_lat.innerHTML = 40;
+        output_lon.innerHTML = -4;
+        // fetchdata()
+
+    };
+
+    map.whenReady(callBack);
+
+    var theMarker = L.marker([40, -4]).addTo(map);
     map.on('click', function (e) {
         lat = e.latlng.lat;
         lon = e.latlng.lng;
 
         console.log("has clicao LAT: " + lat + " y LONG: " + lon);
         //Clear existing marker, 
-
         if (theMarker != undefined) {
             map.removeLayer(theMarker);
         };
-
         //Add a marker to show where you clicked.
         theMarker = L.marker([lat, lon]).addTo(map);
         var llat = lat.toFixed(3);
@@ -274,19 +274,25 @@ function initialize() {
 
 
 
+
+
 function fetchdata() {
     $.getJSON($SCRIPT_ROOT + '/formulario', {
         'latitud': document.getElementById("latitud_value").innerHTML,
         'longitud': document.getElementById("longitud_value").innerHTML,
         'inclinacion': document.getElementById("inclinacion_value").innerHTML,
         'orientacion': document.getElementById("orientacion_value").innerHTML,
-        'punto': document.getElementById("punto").innerHTML,
+        'punto': document.getElementById("punto_value").innerHTML,
+
     }, function (data) {
         $("#P0").text(data.P);
         $("#P1").text(data.P);
-        $("#PP2").text(data.P);
+        $("#P2").text(data.P);
         $("#P3").text(data.P);
     });
+
+
+
     // alert('Disculpe, esta en mantenimiento, proximamente estara operativo')
 
 }
@@ -297,7 +303,7 @@ function fetchdata() {
 
 
 
-document.addEventListener("DOMContentLoaded", function () { fetchdata(); initialize() }, false);
+document.addEventListener("DOMContentLoaded", function () { ; initialize() }, false);
 //   document.addEventListener("mouseup", function () { fetchdata() }, false);
 //   document.addEventListener("touchmove", function () { fetchdata() }, false);
 // console.log(datasets)
