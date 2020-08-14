@@ -197,8 +197,8 @@ var scatterChart = new Chart(ctx, {
             // where e = event
 
 
-            output_punto.innerHTML = [datasetIndex, index, value.x, value.y];
-            // output4.innerHTML = value;
+            punto.innerHTML = [datasetIndex, index, value.x, value.y];
+            // punto.innerHTML = value;
             fetchdata()
 
         }
@@ -282,7 +282,7 @@ function fetchdata() {
         'longitud': document.getElementById("longitud_value").innerHTML,
         'inclinacion': document.getElementById("inclinacion_value").innerHTML,
         'orientacion': document.getElementById("orientacion_value").innerHTML,
-        'punto': document.getElementById("punto_value").innerHTML,
+        // 'punto': document.getElementById("punto_value").innerHTML,
 
     }, function (data) {
         $("#P0").text(data.P);
