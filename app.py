@@ -113,8 +113,8 @@ def formulario():
     # url="https://re.jrc.ec.europa.eu/api/DRcalc?lat="+lat+"&lon="+lon+"&month="+mes+"&global=1"
 
     url="https://re.jrc.ec.europa.eu/api/PVcalc?lat="+str(latitud)+"&lon="+str(longitud)+"&peakpower=1&loss=0"
-    url=url+"&angle=30" # angle Inclination angle from horizontal plane of the (fixed) PV system. 
-    url=url+"&aspect=44"    #Orientation (azimuth) angle of the (fixed) PV system, 0=south, 90=west, -90=east.
+    url=url+"&angle="+str(inclinacion) # angle Inclination angle from horizontal plane of the (fixed) PV system. 
+    url=url+"&aspect="+str(orientacion)    #Orientation (azimuth) angle of the (fixed) PV system, 0=south, 90=west, -90=east.
     url=url+"&localtime=1"
     url=url+"&outputformat=json"
     print(url)
@@ -129,8 +129,8 @@ def formulario():
 
     #  sin sombras
     url="https://re.jrc.ec.europa.eu/api/PVcalc?lat="+str(latitud)+"&lon="+str(longitud)+"&peakpower=1&loss=0"
-    url=url+"&angle=30" # angle Inclination angle from horizontal plane of the (fixed) PV system. 
-    url=url+"&aspect=44"    #Orientation (azimuth) angle of the (fixed) PV system, 0=south, 90=west, -90=east.
+    url=url+"&angle="+str(inclinacion) # angle Inclination angle from horizontal plane of the (fixed) PV system. 
+    url=url+"&aspect="+str(orientacion)    #Orientation (azimuth) angle of the (fixed) PV system, 0=south, 90=west, -90=east.
     url=url+"&localtime=1"
     url=url+"&outputformat=json"
     print(url)
