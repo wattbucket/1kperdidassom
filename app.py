@@ -56,9 +56,10 @@ def formulario():
     longitud = request.args.get('longitud', 0, type=float)
     inclinacion = request.args.get('inclinacion', 0, type=int)
     orientacion = request.args.get('orientacion', 0, type=int)
-    # punto = request.args.get('punto', 0, type=str)
+    punto = request.args.get('punto', 0, type=str)
+    
     # 
-    punto="5,0,-180,50"
+    # punto="5,0,-180,50"
     # latitud=40
     # longitud=-4
 
