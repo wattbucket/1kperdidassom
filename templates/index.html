@@ -108,6 +108,14 @@
 						<a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
                     </p>
                 </div>
+                <div class="btn-group">
+                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary"
+                        onclick="location.href='{{ url_for('infor') }}';">Informe</button> -->
+                    <p>Energia sin sombra=<span id="Es0">2123.67</span> </p>
+                    <p>Energia con sombra=<span id="E1">2123.67</span> </p>
+                    <br>
+                    <p> Perdidas=<span id="P2">0</span></p>
+                </div>
             </section>
             <!-- <div class="container-md themed-container"> -->
 
@@ -133,7 +141,7 @@
                                 <div class="card-body">
 
                                     <div>
-                                        <small class="text-muted">Perdidas P=<span id="P3"></span> %</small>
+                                        <small class="text-muted">Perdidas P=<span id="P3">0</span> %</small>
                                     </div>
                                     <small>
                                         <a>lat=<span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"
@@ -174,7 +182,7 @@
                                                 onclick="location.href='{{ url_for('infor')}}';">Informe</button>
                                         </div>
                                     </div>
-                                    <small class="text-muted">Perdidas P=<span id="P0"></span> %</small>
+                                    <small class="text-muted">Perdidas P=<span id="P0">0</span> %</small>
                                     <p class="card-text">
                                         <a>Inclinacion &beta;=
                                             <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"
@@ -207,7 +215,7 @@
                                                 onclick="location.href='{{ url_for('infor')}}';">Informe</button>
                                         </div>
                                     </div>
-                                    <small class="text-muted">Perdidas P=<span id="P1"></span> %</small>
+                                    <small class="text-muted">Perdidas P=<span id="P1">0</span> %</small>
                                     <p class="card-text">
                                         <a>Orientacion &alpha;=<span
                                                 class="font-weight-bold text-primary ml-2 mt-1 valueSpan"
@@ -219,35 +227,34 @@
                             </div>
                         </div>
 
-                        <!-- 
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary"
-                                onclick="location.href='{{ url_for('infor') }}';">Informe</button>
-                        </div> -->
-                        
-                            <p>Perdidas=<span id="P2"></span>
-                            </p>
 
-                        <!-- Columns -->
-                        <div class="col-md-12">
-                            <div id=sc class="card mb-12 shadow-sm">
-                                <!-- <div id="gincl"></div> -->
-                                <div class="card-body">
-                                    <div class="backgroundA">
-                                        <canvas id="canvas" width="300" height="250" </canvas>
-                                            div test 1
-                                    </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <span id="punto_value">3,0,11,44</span>
+
+
+
+
 
                     </div>
+                    <!-- Columns -->
+                    <div class="col-md-12">
+                        <div id=sc class="card mb-12 shadow-sm">
+                            <!-- <div id="gincl"></div> -->
+                            <div class="card-body">
+                                <div class="backgroundA">
+                                    <canvas id="canvas" width="300" height="250" </canvas>
+                                        div test 1
+                                </div>
 
+                            </div>
+                        </div>
+                    </div>
+                    <span id="punto_value">3,0,11,44</span>
 
                 </div>
+
+
             </div>
+        </div>
         </div>
         </div>
     </main>

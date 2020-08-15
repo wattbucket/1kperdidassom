@@ -211,7 +211,7 @@ var output2 = document.getElementById("inclinacion_value");
 output2.innerHTML = slider2.value;
 slider2.oninput = function () {
     output2.innerHTML = this.value;
-    fetchdata()
+    fetchdatass()
 }
 
 var slider3 = document.getElementById("orientacion_range");
@@ -219,7 +219,7 @@ var output3 = document.getElementById("orientacion_value");
 output3.innerHTML = slider3.value;
 slider3.oninput = function () {
     output3.innerHTML = this.value;
-    fetchdata()
+    fetchdatass()
 }
 
 
@@ -265,7 +265,7 @@ function initialize() {
         var llon = lon.toFixed(3);
         output_lat.innerHTML = llat;
         output_lon.innerHTML = llon;
-        fetchdata()
+        fetchdatass()
     });
 }
 
@@ -282,13 +282,21 @@ function fetchdata() {
         'inclinacion': document.getElementById("inclinacion_value").innerHTML,
         'orientacion': document.getElementById("orientacion_value").innerHTML,
         'punto': document.getElementById("punto_value").innerHTML,
+        'P': document.getElementById("P0").innerHTML,
+        'Es0': document.getElementById("Es0").innerHTML,
 
     }, function (data) {
+        // $("#Es0").text(data.E);
+        $("#E1").text(data.E);
+        $("#E2").text(data.E);
+        $("#E3").text(data.E);
         $("#P0").text(data.P);
         $("#P1").text(data.P);
         $("#P2").text(data.P);
         $("#P3").text(data.P);
     });
+
+
 
 
 
@@ -298,6 +306,25 @@ function fetchdata() {
 
 
 
+function fetchdatass() {
+    $.getJSON($SCRIPT_ROOT + '/sinsombra', {
+        'latitud': document.getElementById("latitud_value").innerHTML,
+        'longitud': document.getElementById("longitud_value").innerHTML,
+        'inclinacion': document.getElementById("inclinacion_value").innerHTML,
+        'orientacion': document.getElementById("orientacion_value").innerHTML,
+        'punto': document.getElementById("punto_value").innerHTML,
+        'P': document.getElementById("P0").innerHTML,
+    }, function (data) {
+        $("#Es0").text(data.Es0);
+        $("#E1").text(data.E);
+        // $("#Ess2").text(data.Ess);
+        // $("#Ess3").text(data.Ess);
+        // $("#P0").text(data.P);
+        // $("#P1").text(data.P);
+        // $("#P2").text(data.P);
+        // $("#P3").text(data.P);
+    });
+}
 
 
 

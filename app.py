@@ -27,15 +27,13 @@ def infor():
 
 
 
+
 @app.route('/informe')
 def informe():
     latitud=session["latitud"]
     longitud=session["longitud"]
     inclinacion=session["inclinacion"]
 
-    E=session["E"]
-    Es=session["Es"]
-    P=session["P"]
 
 
     #  devuelta navegador
@@ -45,11 +43,43 @@ def informe():
 
 
 
+@app.route('/sinsombra')
+def sinsombra():
+
+    # datos del navegador
+    latitud = request.args.get('latitud', 0, type=float)
+    longitud = request.args.get('longitud', 0, type=float)
+    inclinacion = request.args.get('inclinacion', 0, type=int)
+    orientacion = request.args.get('orientacion', 0, type=int)
+
+    
+
+
+  #  sin sombras
+    url="https://re.jrc.ec.europa.eu/api/PVcalc?lat="+str(latitud)+"&lon="+str(longitud)+"&peakpower=1&loss=0"
+    url=url+"&angle="+str(inclinacion) # angle Inclination angle from horizontal plane of the (fixed) PV system. 
+    url=url+"&aspect="+str(orientacion)    #Orientation (azimuth) angle of the (fixed) PV system, 0=south, 90=west, -90=east.
+    url=url+"&localtime=1"
+    url=url+"&outputformat=json"
+    # print(url)
+    hh=[0,0,0,0,0,0,0,0]
+    url=url+"&userhorizon="+str(hh).strip('[]')
+    # print(url)
+    r = requests.get(url)
+    data = r.json()
+    session.pop('Es', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
+    Es0=data["outputs"]["totals"]["fixed"]["H(i)_y"]
+
+    return jsonify(Es0=Es0,E=0)
+
+
+
+
 
 @app.route('/formulario')
 def formulario():
     p=session["p"]
-
+    # Ess=session["Ess"]
 
     # datos del navegador
     latitud = request.args.get('latitud', 0, type=float)
@@ -57,7 +87,10 @@ def formulario():
     inclinacion = request.args.get('inclinacion', 0, type=int)
     orientacion = request.args.get('orientacion', 0, type=int)
     punto = request.args.get('punto', 0, type=str)
+    Es0 = request.args.get('Es0', 0, type=str)
     
+    print(Es0)
+
     # 
     # punto="5,0,-180,50"
     # latitud=40
@@ -92,7 +125,7 @@ def formulario():
     # actualiza la tabla de puntos
     df.loc[pp.at[0,0]].at[pp.at[0,1],0]=pp.at[0,2]
     df.loc[pp.at[0,0]].at[pp.at[0,1],1]=pp.at[0,3]
-    print(df)
+    # print(df)
     p=df.values.tolist()
 
 
@@ -117,39 +150,26 @@ def formulario():
     url=url+"&aspect="+str(orientacion)    #Orientation (azimuth) angle of the (fixed) PV system, 0=south, 90=west, -90=east.
     url=url+"&localtime=1"
     url=url+"&outputformat=json"
-    print(url)
+    # print(url)
     # hh=[0,10,20,80,40,15,25,5]
     url=url+"&userhorizon="+str(hh).strip('[]')
     # print(url)
     r = requests.get(url)
     data = r.json()
-    session.pop('Es', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
-    Es=data["outputs"]["totals"]["fixed"]["E_y"]
+    # session.pop('E', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
+    E=data["outputs"]["totals"]["fixed"]["H(i)_y"]
 
 
-    #  sin sombras
-    url="https://re.jrc.ec.europa.eu/api/PVcalc?lat="+str(latitud)+"&lon="+str(longitud)+"&peakpower=1&loss=0"
-    url=url+"&angle="+str(inclinacion) # angle Inclination angle from horizontal plane of the (fixed) PV system. 
-    url=url+"&aspect="+str(orientacion)    #Orientation (azimuth) angle of the (fixed) PV system, 0=south, 90=west, -90=east.
-    url=url+"&localtime=1"
-    url=url+"&outputformat=json"
-    print(url)
-    hh=[0,0,0,0,0,0,0,0]
-    url=url+"&userhorizon="+str(hh).strip('[]')
-    # print(url)
-    r = requests.get(url)
-    data = r.json()
-    session.pop('Es', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
-    E=data["outputs"]["totals"]["fixed"]["E_y"]
+  
 
 
-
-    session.pop('P', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
-    P=100-Es*100/E
+    # session.pop('P', None) #####   !!!! ojo libera la sesion para poder y acumulando los cambios
+    print(Es0)
+    Es0=float(Es0)
+    P=100-E*100/Es0
     P=round(P,2)
     # 
     # calculo de las perdidas
-
 
     # 
     session["latitud"]=latitud
@@ -157,13 +177,9 @@ def formulario():
     session["inclinacion"]=inclinacion
     session["orientacion"]=orientacion
     session["p"]=p
-    session["Es"]=Es
+    session["E"]=E
     session["P"]=P # Perdidas    
-    # print('----------------valores del navegador-------------')
-
-    # print(p,'y de salida: ')
-
-    return jsonify(P=P)
+    return jsonify(E=E,P=P)
 
 
 
@@ -171,14 +187,8 @@ def formulario():
 
 @app.route('/')
 def index():
-
-
     p=[[-80,0],[-100,0],[-40,0],[-60,0],[-0,5],[-20,0],[0,10],[20,0],[40,0],[60,0],[80,0],[100,0]]
     session["p"]=p
-
-
-
-
 
     return render_template('index.html')
 
